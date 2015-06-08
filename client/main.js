@@ -68,6 +68,9 @@ function render(){
 		ctx.restore();
 	}
 
+	ctx.fillStyle = '#fff';
+	ctx.fillText('Ping: ' + latency*2, 10, 10);
+
 	requestAnimationFrame(render);
 }
 
