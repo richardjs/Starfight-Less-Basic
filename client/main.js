@@ -1,5 +1,6 @@
 'use strict';
 
+var INPUT_FPS = 60;
 var PING_FPS = 20;
 
 var canvas = document.createElement('canvas');
@@ -39,6 +40,17 @@ setInterval(function(){
 socket.on('ping', function(time){
 	latency = (Date.now() - time) / 2;
 });
+
+var keysDown = {};
+document.body.addEventListener('keydown', function(event){
+	keysDown[event.which] = true;
+});
+document.body.addEventListener('keyup', function(event){
+	keysDown[event.which] = false;
+});
+setInterval(function(){
+	socket.emit('inputupdate', keysDown);
+}, 1000/INPUT_FPS);
 
 function render(){
 	ctx.fillStyle = 'black';

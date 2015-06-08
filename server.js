@@ -40,6 +40,10 @@ io.on('connection', function(socket){
 	socket.on('ping', function(time){
 		socket.emit('ping', time);
 	});
+
+	socket.on('inputupdate', function(keysDown){
+		player.keysDown = keysDown;
+	});
 });
 
 setInterval(function(){
