@@ -1,0 +1,9 @@
+{
+  "name": "networking-for-real",
+  "version": "0.1.0",
+  "dependencies": {
+    "express": "^4.12.4",
+    "socket.io": "^1.3.5",
+    "uuid": "^1.4.1"
+  }
+}
