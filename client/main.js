@@ -28,6 +28,8 @@ socket.on('stateupdate', function(state){
 		var player = new Player(entityState.id);
 		player.x = entityState.x;
 		player.y = entityState.y;
+		player.dx = entityState.dx;
+		player.dy = entityState.dy;
 		player.angle = entityState.angle;
 		game.entities.push(player);
 	}
