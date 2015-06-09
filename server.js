@@ -1,7 +1,7 @@
 'use strict';
 
 var PORT = process.env.PORT || 4000;
-var NETWORK_FPS = 20;
+var NETWORK_FPS = 10;
 
 var express = require('express');
 var http = require('http');

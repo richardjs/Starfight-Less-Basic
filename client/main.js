@@ -25,13 +25,17 @@ socket.on('stateupdate', function(state){
 	game.entities = [];
 	for(var i = 0; i < state.entities.length; i++){
 		var entityState = state.entities[i];
-		var player = new Player(entityState.id);
-		player.x = entityState.x;
-		player.y = entityState.y;
-		player.dx = entityState.dx;
-		player.dy = entityState.dy;
-		player.angle = entityState.angle;
-		game.entities.push(player);
+		var p = new Player(entityState.id);
+		p.x = entityState.x;
+		p.y = entityState.y;
+		p.dx = entityState.dx;
+		p.dy = entityState.dy;
+		p.angle = entityState.angle;
+		game.entities.push(p);
+
+		if(p.id === socket.id){
+			window.player = p;
+		}
 	}
 	game.time = state.time - latency;
 	while(inputs[0].time < game.time){
@@ -67,7 +71,9 @@ setInterval(function(){
 		keysDown: keysDown,
 		time: game.time
 	});
-	game.entities[0].keysDown = keysDown;
+	if(typeof(player) !== 'undefined'){
+		player.keysDown = keysDown;
+	}
 	socket.emit('inputupdate', keysDown);
 }, 1000/INPUT_FPS);
 
