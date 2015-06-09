@@ -33,6 +33,17 @@ socket.on('stateupdate', function(state){
 		player.angle = entityState.angle;
 		game.entities.push(player);
 	}
+	game.time = state.time - latency;
+	while(inputs[0].time < game.time){
+		inputs.shift();	
+	}
+	var time = game.time;
+	for(var i = 0; i < inputs.length; i++){
+		var input = inputs[i];
+		var delta = input.time - time;
+		time = input.time;
+		player.keysDown = input.keysDown;
+	}
 });
 
 var latency;
@@ -44,6 +55,7 @@ socket.on('ping', function(time){
 });
 
 var keysDown = {};
+var inputs = [];
 document.body.addEventListener('keydown', function(event){
 	keysDown[event.which] = true;
 });
@@ -51,6 +63,11 @@ document.body.addEventListener('keyup', function(event){
 	keysDown[event.which] = false;
 });
 setInterval(function(){
+	inputs.push({
+		keysDown: keysDown,
+		time: game.time
+	});
+	game.entities[0].keysDown = keysDown;
 	socket.emit('inputupdate', keysDown);
 }, 1000/INPUT_FPS);
 
