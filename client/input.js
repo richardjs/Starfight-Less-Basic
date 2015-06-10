@@ -16,8 +16,12 @@ document.body.addEventListener('keyup', function(event){
 var nextSequenceNumber = 0;
 setInterval(function(){
 	var input = {
-		keysDown: keysDown,
+		keysDown: {},
 		sequenceNumber: nextSequenceNumber++
+	}
+	var keys = Object.keys(keysDown);
+	for(var i = 0; i < keys.length; i++){
+		input.keysDown[keys[i]] = keysDown[keys[i]];
 	}
 	inputs.push(input);
 
