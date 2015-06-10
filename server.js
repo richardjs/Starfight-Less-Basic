@@ -42,12 +42,14 @@ io.on('connection', function(socket){
 	});
 
 	socket.on('input update', function(state){
-		player.keysDown = state;
+		player.keysDown = state.keysDown;
+		socket.lastSequenceNumber = state.sequenceNumber;
 	});
 });
 
 setInterval(function(){
 	for(var i = 0; i < sockets.length; i++){
+		game.lastSequenceNumber = sockets[i].lastSequenceNumber;
 		sockets[i].emit('world update', game);
 	}
 }, 1000/NETWORK_FPS);

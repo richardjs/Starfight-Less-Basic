@@ -24,6 +24,7 @@ Player.prototype.update = function(){
 		this.dx += Math.cos(this.angle) * PLAYER_ACCELERATION;
 		this.dy += Math.sin(this.angle) * PLAYER_ACCELERATION;
 	}
+	this.keysDown = {};
 
 	this.x += this.dx;
 	this.y += this.dy;
