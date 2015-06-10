@@ -1,14 +1,14 @@
 'use strict';
 
-var PORT = process.env.PORT || 4000;
-var NETWORK_FPS = 10;
-
 var express = require('express');
 var http = require('http');
 var UUID = require('uuid');
 
 var Game = require('./core/game.js');
 var Player = require('./core/player.js');
+
+var PORT = process.env.PORT || 4000;
+var NETWORK_FPS = 10;
 
 var app = express();
 var server = http.createServer(app);
@@ -27,7 +27,7 @@ io.on('connection', function(socket){
 
 	socket.id = UUID.v4();
 	console.log('socket connection (id: '+socket.id+')');
-	socket.emit('setid', socket.id);
+	socket.emit('set id', socket.id);
 
 	var player = new Player(socket.id);
 	game.entities.push(player);
@@ -41,14 +41,14 @@ io.on('connection', function(socket){
 		socket.emit('ping', time);
 	});
 
-	socket.on('inputupdate', function(keysDown){
-		player.keysDown = keysDown;
+	socket.on('input update', function(state){
+		player.keysDown = state;
 	});
 });
 
 setInterval(function(){
 	for(var i = 0; i < sockets.length; i++){
-		sockets[i].emit('stateupdate', game);
+		sockets[i].emit('world update', game);
 	}
 }, 1000/NETWORK_FPS);
 
