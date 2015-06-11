@@ -23,6 +23,7 @@ function render(){
 
 	ctx.fillStyle = '#fff';
 	ctx.fillText('Ping: ' + latency*2, 10, 10);
+	ctx.fillText('Buffered input: ' + inputs.length, 10, 20);
 
 	requestAnimationFrame(render);
 }

@@ -8,7 +8,7 @@ var Game = require('./core/game.js');
 var Player = require('./core/player.js');
 
 var PORT = process.env.PORT || 4000;
-var NETWORK_FPS = 10;
+var NETWORK_FPS = 1;
 
 var app = express();
 var server = http.createServer(app);

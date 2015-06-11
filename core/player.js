@@ -1,7 +1,7 @@
 'use strict';
 
 var PLAYER_ACCELERATION = 10 * 1000/60 / 1000;
-var PLAYER_TURN_SPEED = Math.PI * 1000/60 / 1000;
+var PLAYER_TURN_SPEED = Math.PI*2 * 1000/60 / 1000;
 
 function Player(id){
 	this.id = id;
