@@ -11,9 +11,13 @@ function Player(id){
 	this.dy = 0;
 	this.angle = Math.random() * Math.PI*2;
 	this.keysDown = {};
+	this.keysDownBuffer = [];
 }
 
 Player.prototype.update = function(){
+	if(this.keysDownBuffer.length){
+		this.keysDown = this.keysDownBuffer.shift();
+	}
 	if(this.keysDown[37]){
 		this.angle -= PLAYER_TURN_SPEED;
 	}

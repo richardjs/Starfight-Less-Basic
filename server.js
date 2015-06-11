@@ -42,7 +42,7 @@ io.on('connection', function(socket){
 	});
 
 	socket.on('input update', function(state){
-		player.keysDown = state.keysDown;
+		player.keysDownBuffer.push(state.keysDown);
 		socket.lastSequenceNumber = state.sequenceNumber;
 	});
 });
