@@ -8,7 +8,7 @@ var Game = require('./core/game.js');
 var Player = require('./core/player.js');
 
 var PORT = process.env.PORT || 4000;
-var NETWORK_FPS = 1;
+var NETWORK_FPS = 10;
 
 var app = express();
 var server = http.createServer(app);
@@ -30,6 +30,7 @@ io.on('connection', function(socket){
 	socket.emit('set id', socket.id);
 
 	var player = new Player(socket.id);
+	socket.player = player;
 	game.entities.push(player);
 
 	socket.on('disconnect', function(){
@@ -42,14 +43,17 @@ io.on('connection', function(socket){
 	});
 
 	socket.on('input update', function(state){
-		player.keysDownBuffer.push(state.keysDown);
-		socket.lastSequenceNumber = state.sequenceNumber;
+		player.keysDownBuffer.push(state);
+		//player.keysDown = state.keysDown;
 	});
 });
 
 setInterval(function(){
 	for(var i = 0; i < sockets.length; i++){
-		game.lastSequenceNumber = sockets[i].lastSequenceNumber;
+		if(sockets[i].player.keysDownBuffer[0]){
+			game.lastSequenceNumber = sockets[i].player.keysDownBuffer[0].sequenceNumber - 1;
+		}
+		console.log(sockets[i].player.keysDownBuffer[0]);
 		sockets[i].emit('world update', game);
 	}
 }, 1000/NETWORK_FPS);

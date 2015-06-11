@@ -27,7 +27,8 @@ socket.on('world update', function(state){
 			game.localPlayer = player;
 		}
 	}
-		
+	
+	console.log(inputs[0].sequenceNumber + ' ' + state.lastSequenceNumber);
 	while(inputs.length && inputs[0].sequenceNumber <= state.lastSequenceNumber){
 		inputs.shift();
 	}

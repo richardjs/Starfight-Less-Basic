@@ -14,9 +14,10 @@ function Player(id){
 	this.keysDownBuffer = [];
 }
 
+var turnCount = 0;
 Player.prototype.update = function(){
 	if(this.keysDownBuffer.length){
-		this.keysDown = this.keysDownBuffer.shift();
+		this.keysDown = this.keysDownBuffer.shift().keysDown;
 	}
 	if(this.keysDown[37]){
 		this.angle -= PLAYER_TURN_SPEED;
