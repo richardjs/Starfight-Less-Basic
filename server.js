@@ -6,9 +6,10 @@ var UUID = require('uuid');
 
 var Game = require('./core/game.js');
 var Player = require('./core/player.js');
+var setTimer = require('./core/timer.js');
 
 var PORT = process.env.PORT || 4000;
-var NETWORK_FPS = 10;
+var NETWORK_FPS = 20;
 
 var app = express();
 var server = http.createServer(app);
@@ -19,7 +20,9 @@ app.use('/core', express.static('core'));
 app.use(express.static('static'));
 
 var game = new Game();
-game.start();
+setTimer(function(){
+	game.update();
+}, 1000/60); // TODO hook back in PHYSICS_FPS
 
 var sockets = [];
 io.on('connection', function(socket){
@@ -53,7 +56,6 @@ setInterval(function(){
 		if(sockets[i].player.keysDownBuffer[0]){
 			game.lastSequenceNumber = sockets[i].player.keysDownBuffer[0].sequenceNumber - 1;
 		}
-		console.log(sockets[i].player.keysDownBuffer[0]);
 		sockets[i].emit('world update', game);
 	}
 }, 1000/NETWORK_FPS);

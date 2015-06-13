@@ -14,7 +14,7 @@ document.body.addEventListener('keyup', function(event){
 });
 
 var nextSequenceNumber = 0;
-setInterval(function(){
+setTimer(function(){
 	var input = {
 		keysDown: {},
 		sequenceNumber: nextSequenceNumber++

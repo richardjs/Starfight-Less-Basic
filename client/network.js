@@ -28,7 +28,6 @@ socket.on('world update', function(state){
 		}
 	}
 	
-	console.log(inputs[0].sequenceNumber + ' ' + state.lastSequenceNumber);
 	while(inputs.length && inputs[0].sequenceNumber <= state.lastSequenceNumber){
 		inputs.shift();
 	}
