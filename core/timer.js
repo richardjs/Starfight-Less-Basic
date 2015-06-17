@@ -11,13 +11,17 @@ function setTimer(func, interval){
 		lastTime = now;
 		drift += delta - interval;
 
+		if(drift > interval * 10){
+			drift = 0;
+			console.log('skipping frames');
+		}
+
 		func();
 		
 		setTimeout(timeHit, Math.max(interval - drift, 0));
 	}
 
 	setTimeout(timeHit, interval);
-
 }
 
 if(typeof(module) !== 'undefined'){

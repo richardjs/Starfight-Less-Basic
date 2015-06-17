@@ -31,4 +31,4 @@ setTimer(function(){
 		game.localPlayer.keysDown = keysDown;
 	}
 	game.update();
-}, 1000/INPUT_FPS);
+}, 1000/(INPUT_FPS));
