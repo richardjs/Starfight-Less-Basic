@@ -12,6 +12,20 @@ function initDisplay(){
 		ctx.fillStyle = 'black';
 		ctx.fillRect(0, 0, canvas.width, canvas.height);
 
+		if(!game.localPlayer){
+			requestAnimationFrame(render);
+			return;
+		}
+
+		for(var i = 0; i < stars.length; i++){
+			stars[i].render(game.localPlayer.x, game.localPlayer.y);
+		}
+
+		ctx.save();
+		ctx.translate(
+			canvas.width/2 - game.localPlayer.x,
+			canvas.height/2 - game.localPlayer.y
+		);
 		var playerImage = document.getElementById('playerImage');
 		for(var i = 0; i < game.entities.length; i++){
 			var entity = game.entities[i];
@@ -21,6 +35,7 @@ function initDisplay(){
 			ctx.drawImage(playerImage, -playerImage.width/2, -playerImage.height/2);
 			ctx.restore();
 		}
+		ctx.restore();
 
 		ctx.fillStyle = '#fff';
 		ctx.fillText('Ping: ' + latency*2, 10, 10);
