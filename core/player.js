@@ -1,6 +1,7 @@
 'use strict';
 
 var PLAYER_ACCELERATION = 10 * 1000/60 / 1000;
+var PLAYER_AFTERBURNER_ACCELERATION = 10 * 1000/60 / 1000;
 var PLAYER_TURN_SPEED = Math.PI*2 * 1000/60 / 1000;
 
 function Player(id){
@@ -25,9 +26,18 @@ Player.prototype.update = function(){
 	if(this.keysDown[39]){
 		this.angle += PLAYER_TURN_SPEED;
 	}
+
+	var acceleration = PLAYER_ACCELERATION;
+	if(this.keysDown[16]){
+		acceleration += PLAYER_AFTERBURNER_ACCELERATION;
+	}
 	if(this.keysDown[38]){
-		this.dx += Math.cos(this.angle) * PLAYER_ACCELERATION;
-		this.dy += Math.sin(this.angle) * PLAYER_ACCELERATION;
+		this.dx += Math.cos(this.angle) * acceleration;
+		this.dy += Math.sin(this.angle) * acceleration;
+	}
+	if(this.keysDown[40]){
+		this.dx -= Math.cos(this.angle) * acceleration;
+		this.dy -= Math.sin(this.angle) * acceleration;
 	}
 	this.keysDown = {};
 
