@@ -21,6 +21,7 @@ function initNetwork(){
 			player.dx = entityState.dx;
 			player.dy = entityState.dy;
 			player.angle = entityState.angle;
+			player.energy = entityState.energy;
 
 			game.entities.push(player);
 

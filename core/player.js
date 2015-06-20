@@ -1,8 +1,14 @@
 'use strict';
 
 var PLAYER_ACCELERATION = 10 * 1000/60 / 1000;
-var PLAYER_AFTERBURNER_ACCELERATION = 10 * 1000/60 / 1000;
 var PLAYER_TURN_SPEED = Math.PI*2 * 1000/60 / 1000;
+
+var PLAYER_STARTING_ENERGY= 1000;
+var PLAYER_ENERGY_REGEN = 100 * 1000/60/1000;
+
+var PLAYER_AFTERBURNER_ACCELERATION = 40 * 1000/60 / 1000;
+var PLAYER_AFTERBURNER_COST = 500 * 1000/60/1000;
+
 
 function Player(id){
 	this.id = id;
@@ -13,6 +19,8 @@ function Player(id){
 	this.angle = Math.random() * Math.PI*2;
 	this.keysDown = {};
 	this.keysDownBuffer = [];
+
+	this.energy = PLAYER_STARTING_ENERGY;
 }
 
 var turnCount = 0;
@@ -28,8 +36,9 @@ Player.prototype.update = function(){
 	}
 
 	var acceleration = PLAYER_ACCELERATION;
-	if(this.keysDown[16]){
+	if(this.keysDown[16] && this.energy > PLAYER_AFTERBURNER_COST){
 		acceleration += PLAYER_AFTERBURNER_ACCELERATION;
+		this.energy -= PLAYER_AFTERBURNER_COST;
 	}
 	if(this.keysDown[38]){
 		this.dx += Math.cos(this.angle) * acceleration;
@@ -43,6 +52,11 @@ Player.prototype.update = function(){
 
 	this.x += this.dx;
 	this.y += this.dy;
+
+	this.energy += PLAYER_ENERGY_REGEN;
+	if(this.energy > PLAYER_STARTING_ENERGY){
+		this.energy = PLAYER_STARTING_ENERGY;
+	}
 }
 
 if(typeof(module) !== 'undefined'){

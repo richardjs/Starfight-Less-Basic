@@ -38,6 +38,11 @@ function initDisplay(){
 		ctx.restore();
 
 		ctx.fillStyle = '#fff';
+		ctx.font = '18pt courier';
+		ctx.fillText('Energy: ' + Math.floor(game.localPlayer.energy), 10, canvas.height - 20);
+
+		ctx.font = '10px sans serif';
+		ctx.fillStyle = '#fff';
 		ctx.fillText('Ping: ' + latency*2, 10, 10);
 		ctx.fillText('Buffered input: ' + inputs.length, 10, 20);
 
