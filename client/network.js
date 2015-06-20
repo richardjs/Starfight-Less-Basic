@@ -14,19 +14,24 @@ function initNetwork(){
 		game.entities = [];
 		for(var i = 0; i < state.entities.length; i++){
 			var entityState = state.entities[i];
-			var player = new Player();
-			player.id = entityState.id
-			player.x = entityState.x;
-			player.y = entityState.y;
-			player.dx = entityState.dx;
-			player.dy = entityState.dy;
-			player.angle = entityState.angle;
-			player.energy = entityState.energy;
+			switch(entityState.type){
+				case 'player':
+					var player = new Player();
+					player.id = entityState.id
+					player.x = entityState.x;
+					player.y = entityState.y;
+					player.dx = entityState.dx;
+					player.dy = entityState.dy;
+					player.angle = entityState.angle;
+					player.energy = entityState.energy;
 
-			game.entities.push(player);
+					game.entities.push(player);
 
-			if(player.id === id){
-				game.localPlayer = player;
+					if(player.id === id){
+						game.localPlayer = player;
+					}
+
+					break;
 			}
 		}
 		

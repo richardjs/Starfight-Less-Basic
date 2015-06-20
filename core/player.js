@@ -5,12 +5,14 @@ var PLAYER_TURN_SPEED = Math.PI*2 * 1000/60 / 1000;
 
 var PLAYER_STARTING_ENERGY= 1000;
 var PLAYER_ENERGY_REGEN = 100 * 1000/60/1000;
+var PLAYER_THRUSTER_COST = 25 * 1000/60/1000;
 
 var PLAYER_AFTERBURNER_ACCELERATION = 40 * 1000/60 / 1000;
 var PLAYER_AFTERBURNER_COST = 500 * 1000/60/1000;
 
 
 function Player(id){
+	this.type = 'player';
 	this.id = id;
 	this.x = Math.random()*500;	
 	this.y = Math.random()*500;	
@@ -36,17 +38,20 @@ Player.prototype.update = function(){
 	}
 
 	var acceleration = PLAYER_ACCELERATION;
-	if(this.keysDown[65] && this.energy > PLAYER_AFTERBURNER_COST){
+	var cost = PLAYER_THRUSTER_COST;
+	if(this.keysDown[65] && this.energy > cost + PLAYER_AFTERBURNER_COST){
 		acceleration += PLAYER_AFTERBURNER_ACCELERATION;
-		this.energy -= PLAYER_AFTERBURNER_COST;
+		cost += PLAYER_AFTERBURNER_COST;
 	}
-	if(this.keysDown[38]){
+	if(this.keysDown[38] && this.energy > cost){
 		this.dx += Math.cos(this.angle) * acceleration;
 		this.dy += Math.sin(this.angle) * acceleration;
+		this.energy -= cost;
 	}
-	if(this.keysDown[40]){
+	if(this.keysDown[40] && this.energy > cost){
 		this.dx -= Math.cos(this.angle) * acceleration;
 		this.dy -= Math.sin(this.angle) * acceleration;
+		this.energy -= cost;
 	}
 	this.keysDown = {};
 
