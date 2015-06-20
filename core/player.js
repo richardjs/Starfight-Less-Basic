@@ -36,7 +36,7 @@ Player.prototype.update = function(){
 	}
 
 	var acceleration = PLAYER_ACCELERATION;
-	if(this.keysDown[16] && this.energy > PLAYER_AFTERBURNER_COST){
+	if(this.keysDown[65] && this.energy > PLAYER_AFTERBURNER_COST){
 		acceleration += PLAYER_AFTERBURNER_ACCELERATION;
 		this.energy -= PLAYER_AFTERBURNER_COST;
 	}
