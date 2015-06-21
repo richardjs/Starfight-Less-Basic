@@ -6,6 +6,7 @@ var UUID = require('uuid');
 
 var Game = require('./core/game.js');
 var Player = require('./core/player.js');
+var Wall = require('./core/wall.js');
 var setTimer = require('./core/timer.js');
 
 var PORT = process.env.PORT || 4000;
@@ -19,10 +20,18 @@ app.use('/client', express.static('client'));
 app.use('/core', express.static('core'));
 app.use(express.static('static'));
 
+// Game initialization
+var ARENA_SIZE = 3000;
+
 var game = new Game();
 setTimer(function(){
 	game.update();
 }, 1000/60); // TODO hook back in PHYSICS_FPS
+
+game.mapEntities.push(new Wall(-ARENA_SIZE/2, 0, 10, ARENA_SIZE));
+game.mapEntities.push(new Wall(ARENA_SIZE/2, 0, 10, ARENA_SIZE));
+game.mapEntities.push(new Wall(0, -ARENA_SIZE/2, ARENA_SIZE, 10));
+game.mapEntities.push(new Wall(0, ARENA_SIZE/2, ARENA_SIZE, 10));
 
 var sockets = [];
 io.on('connection', function(socket){

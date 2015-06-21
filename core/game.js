@@ -4,6 +4,7 @@ var PHYSICS_FPS = 60;
 
 function Game(){
 	this.entities = [];
+	this.mapEntities = [];
 	this.localPlayer = null;
 }
 

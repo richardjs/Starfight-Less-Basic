@@ -27,6 +27,14 @@ function initDisplay(){
 			canvas.height/2 - game.localPlayer.y
 		);
 		var playerImage = document.getElementById('playerImage');
+		for(var i = 0; i < game.mapEntities.length; i++){
+			var entity = game.mapEntities[i];
+			ctx.save();
+			ctx.translate(entity.x, entity.y);
+			ctx.fillStyle = '#fff';
+			ctx.fillRect(-entity.width/2, -entity.height/2, entity.width, entity.height);
+			ctx.restore();
+		}
 		for(var i = 0; i < game.entities.length; i++){
 			var entity = game.entities[i];
 			ctx.save();
