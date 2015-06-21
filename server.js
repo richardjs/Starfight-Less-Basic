@@ -42,6 +42,7 @@ io.on('connection', function(socket){
 	socket.emit('set id', socket.id);
 
 	var player = new Player(
+		game,
 		socket.id,
 		Math.random() * ARENA_SIZE*.9 - (ARENA_SIZE*.9/2),
 		Math.random() * ARENA_SIZE*.9 - (ARENA_SIZE*.9/2)
@@ -65,11 +66,17 @@ io.on('connection', function(socket){
 });
 
 setInterval(function(){
+	for(var i = 0; i < game.entities.length; i++){
+		delete game.entities[i].game;
+	}
 	for(var i = 0; i < sockets.length; i++){
 		if(sockets[i].player.keysDownBuffer[0]){
 			game.lastSequenceNumber = sockets[i].player.keysDownBuffer[0].sequenceNumber - 1;
 		}
 		sockets[i].emit('world update', game);
+	}
+	for(var i = 0; i < game.entities.length; i++){
+		game.entities[i].game = game;
 	}
 }, 1000/NETWORK_FPS);
 

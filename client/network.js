@@ -17,6 +17,7 @@ function initNetwork(){
 			switch(entityState.type){
 				case 'player':
 					var player = new Player();
+					player.game = game;
 					player.id = entityState.id
 					player.x = entityState.x;
 					player.y = entityState.y;
