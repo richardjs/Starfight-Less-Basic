@@ -92,6 +92,8 @@ Player.prototype.update = function(){
 					this.dx *= -1;
 					stepX *= -1;
 				}
+
+				this.damage(100);
 			}
 		}
 	}
@@ -100,6 +102,11 @@ Player.prototype.update = function(){
 	if(this.energy > PLAYER_STARTING_ENERGY){
 		this.energy = PLAYER_STARTING_ENERGY;
 	}
+}
+
+Player.prototype.damage = function(amount){
+	this.energy -= amount;
+	// TODO 
 }
 
 if(typeof(module) !== 'undefined'){
