@@ -12,6 +12,8 @@ var PLAYER_AFTERBURNER_COST = 500 * 1000/60/1000;
 
 var PLAYER_COLLISION_SIZE = 10;
 
+var PLAYER_WALL_COLLISION_DAMAGE = 10;
+
 function Player(game, id, x, y){
 	this.game = game;
 	this.type = 'player';
@@ -88,12 +90,12 @@ Player.prototype.update = function(){
 				if(Math.abs(wall.x - this.x) < (wall.width + PLAYER_COLLISION_SIZE) / 2){
 					this.dy *= -1;
 					stepY *= -1;
+					this.damage(PLAYER_WALL_COLLISION_DAMAGE * Math.abs(this.dy));
 				}else{
 					this.dx *= -1;
 					stepX *= -1;
+					this.damage(PLAYER_WALL_COLLISION_DAMAGE * Math.abs(this.dx));
 				}
-
-				this.damage(100);
 			}
 		}
 	}
