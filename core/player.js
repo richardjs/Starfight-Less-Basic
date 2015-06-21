@@ -11,11 +11,11 @@ var PLAYER_AFTERBURNER_ACCELERATION = 40 * 1000/60 / 1000;
 var PLAYER_AFTERBURNER_COST = 500 * 1000/60/1000;
 
 
-function Player(id){
+function Player(id, x, y){
 	this.type = 'player';
 	this.id = id;
-	this.x = Math.random()*500;	
-	this.y = Math.random()*500;	
+	this.x = x;	
+	this.y = y;	
 	this.dx = 0;
 	this.dy = 0;
 	this.angle = Math.random() * Math.PI*2;

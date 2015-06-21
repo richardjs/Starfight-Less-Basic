@@ -41,7 +41,11 @@ io.on('connection', function(socket){
 	console.log('socket connection (id: '+socket.id+')');
 	socket.emit('set id', socket.id);
 
-	var player = new Player(socket.id);
+	var player = new Player(
+		socket.id,
+		Math.random() * ARENA_SIZE*.9 - (ARENA_SIZE*.9/2),
+		Math.random() * ARENA_SIZE*.9 - (ARENA_SIZE*.9/2)
+	);
 	socket.player = player;
 	game.entities.push(player);
 
