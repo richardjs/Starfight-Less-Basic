@@ -39,8 +39,18 @@ function initDisplay(){
 			var entity = game.entities[i];
 			ctx.save();
 			ctx.translate(entity.x, entity.y );
-			ctx.rotate(entity.angle);
-			ctx.drawImage(playerImage, -playerImage.width/2, -playerImage.height/2);
+			switch(entity.type){
+				case 'player':
+					ctx.rotate(entity.angle);
+					ctx.drawImage(playerImage, -playerImage.width/2, -playerImage.height/2);
+					break;
+				case 'bullet':
+					ctx.fillStyle = '#a07';
+					ctx.beginPath();
+					ctx.arc(-1.5, -1.5, 3, 0, Math.PI*2);
+					ctx.fill();
+					break;
+			}
 			ctx.restore();
 		}
 		ctx.restore();

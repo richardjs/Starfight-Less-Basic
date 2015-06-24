@@ -26,12 +26,23 @@ function initNetwork(){
 					player.angle = entityState.angle;
 					player.energy = entityState.energy;
 
-					game.entities.push(player);
-
 					if(player.id === id){
 						game.localPlayer = player;
 					}
 
+					game.entities.push(player);
+					break;
+
+				case 'bullet':
+					var bullet = new Bullet();
+					bullet.game = game;
+					bullet.playerID = entityState.playerID;
+					bullet.x = entityState.x;
+					bullet.y = entityState.y;
+					bullet.dx = entityState.dx;
+					bullet.dy = entityState.dy;
+
+					game.entities.push(bullet);
 					break;
 			}
 		}

@@ -10,7 +10,7 @@ var Wall = require('./core/wall.js');
 var setTimer = require('./core/timer.js');
 
 var PORT = process.env.PORT || 4000;
-var NETWORK_FPS = 20;
+var NETWORK_FPS = .5;
 
 var app = express();
 var server = http.createServer(app);
