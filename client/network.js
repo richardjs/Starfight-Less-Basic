@@ -42,6 +42,7 @@ function initNetwork(){
 					bullet.y = entityState.y;
 					bullet.dx = entityState.dx;
 					bullet.dy = entityState.dy;
+					bullet.ttl = entityState.ttl;
 
 					game.entities.push(bullet);
 					break;

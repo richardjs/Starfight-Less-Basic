@@ -18,9 +18,18 @@ function Bullet(game, player){
 		this.dx += Math.cos(player.angle) * BULLET_SPEED;
 		this.dy += Math.sin(player.angle) * BULLET_SPEED;
 	}
+	this.ttl = 1000;
 }
 
 Bullet.prototype = Object.create(Entity.prototype);
+
+Bullet.prototype.update = function(){
+	this.ttl -= 1000/60;
+	if(this.ttl <= 0){
+		this.game.entities.splice(this.game.entities.indexOf(this), 1);
+	}
+	Entity.prototype.update.call(this);
+}
 
 if(typeof(module) !== 'undefined'){
 	module.exports = Bullet;
