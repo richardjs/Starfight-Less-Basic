@@ -10,7 +10,7 @@ var Wall = require('./core/wall.js');
 var setTimer = require('./core/timer.js');
 
 var PORT = process.env.PORT || 4000;
-var NETWORK_FPS = .5;
+var NETWORK_FPS = 40;
 
 var app = express();
 var server = http.createServer(app);
@@ -61,7 +61,8 @@ io.on('connection', function(socket){
 
 	socket.on('input update', function(state){
 		player.keysDownBuffer.push(state);
-		//player.keysDown = state.keysDown;
+		// TODO
+		//player.keysDown[90] = state.keysDown[90];
 	});
 });
 

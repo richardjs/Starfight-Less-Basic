@@ -25,6 +25,7 @@ function initNetwork(){
 					player.dy = entityState.dy;
 					player.angle = entityState.angle;
 					player.energy = entityState.energy;
+					player.bulletTimer = entityState.bulletTimer;
 
 					if(player.id === id){
 						game.localPlayer = player;
