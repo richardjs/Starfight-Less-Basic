@@ -29,6 +29,8 @@ function initNetwork(){
 
 					if(player.id === id){
 						game.localPlayer = player;
+						window.serverX = player.x;
+						window.serverY = player.y;
 					}
 
 					game.entities.push(player);

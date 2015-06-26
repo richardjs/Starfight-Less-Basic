@@ -18,7 +18,8 @@ function initInput(){
 	setTimer(function(){
 		var input = {
 			keysDown: {},
-			sequenceNumber: nextSequenceNumber++
+			sequenceNumber: nextSequenceNumber++,
+			time: Date.now()
 		}
 		var keys = Object.keys(keysDown);
 		for(var i = 0; i < keys.length; i++){

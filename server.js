@@ -10,7 +10,7 @@ var Wall = require('./core/wall.js');
 var setTimer = require('./core/timer.js');
 
 var PORT = process.env.PORT || 4000;
-var NETWORK_FPS = 40;
+var NETWORK_FPS = 20;
 
 var app = express();
 var server = http.createServer(app);
@@ -63,6 +63,8 @@ io.on('connection', function(socket){
 		player.keysDownBuffer.push(state);
 		// TODO
 		//player.keysDown[90] = state.keysDown[90];
+		//player.keysDown = state.keysDown;
+		//socket.lastSequenceNumber = state.sequenceNumber;
 	});
 });
 
@@ -74,6 +76,7 @@ setInterval(function(){
 		if(sockets[i].player.keysDownBuffer[0]){
 			game.lastSequenceNumber = sockets[i].player.keysDownBuffer[0].sequenceNumber - 1;
 		}
+		//game.lastSequenceNumber = sockets[i].lastSequenceNumber;
 		sockets[i].emit('world update', game);
 	}
 	for(var i = 0; i < game.entities.length; i++){

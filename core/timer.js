@@ -12,8 +12,8 @@ function setTimer(func, interval){
 		drift += delta - interval;
 
 		if(drift > interval * 10){
-			drift = 0;
-			console.log('skipping frames');
+			//drift = 0;
+			//console.log('skipping frames');
 		}
 
 		func();

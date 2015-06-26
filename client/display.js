@@ -53,6 +53,14 @@ function initDisplay(){
 			}
 			ctx.restore();
 		}
+		if(window.serverX){
+			ctx.translate(window.serverX, window.serverY);
+			ctx.fillStyle = '#fff';
+			ctx.beginPath();
+			ctx.arc(-1.5, -1.5, 5, 0, Math.PI*2);
+			ctx.fill();
+
+		}
 		ctx.restore();
 
 		ctx.fillStyle = '#fff';
