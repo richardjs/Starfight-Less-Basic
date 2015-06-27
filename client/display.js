@@ -64,7 +64,13 @@ function initDisplay(){
 						ctx.textAlign = 'center';
 						ctx.fillText(entity.name, 0, -30);
 
-						ctx.strokeStyle = '#333';
+						if(entity.energy > MED_ENERGY){
+							ctx.strokeStyle = '#030';
+						}else if(entity.energy > LOW_ENERGY){
+							ctx.strokeStyle = '#330';
+						}else{
+							ctx.strokeStyle = '#300';
+						}
 						ctx.beginPath();
 						ctx.moveTo(0, 0);
 						ctx.lineTo(game.localPlayer.x - entity.x, game.localPlayer.y - entity.y);
