@@ -43,7 +43,7 @@ setTimer(function(){
 					killer.score += 10 + Math.floor(entity.score*.1);
 					entity.score = Math.floor(entity.score*.9);
 				}else{
-					entity.score = Math.floor(entity.score*.8);
+					entity.score = Math.floor(entity.score*.7);
 				}
 
 				(function(entity){

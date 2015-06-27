@@ -48,6 +48,7 @@ Player.prototype.reset = function(x, y){
 	this.energy = PLAYER_STARTING_ENERGY;
 	this.bulletTimer = 0;
 	this.dead = false;
+	this.killerID = null;
 }
 
 var turnCount = 0;
