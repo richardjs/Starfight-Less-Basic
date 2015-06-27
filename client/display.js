@@ -146,7 +146,7 @@ function initDisplay(){
 			}else{
 				ctx.fillStyle = '#800';
 			}
-			ctx.fillText(entity.name + ' ' + entity.score, canvas.width - 10, 20 + 15*i);
+			ctx.fillText((entity.name || '') + ' ' + entity.score, canvas.width - 10, 20 + 15*i);
 		}
 
 		/*
