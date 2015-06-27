@@ -5,12 +5,17 @@ var STARFIELD_HEIGHT = 1080;
 var STAR_COUNT = 150;
 var STAR_MIN_SPEED = .05;
 var STAR_MAX_SPEED = .55;
-var STAR_SIZE = 2;
 
 function Star(){
 	this.x = Math.random() * STARFIELD_WIDTH;
 	this.y = Math.random() * STARFIELD_HEIGHT;
 	this.speed = Math.random()*(STAR_MAX_SPEED - STAR_MIN_SPEED) + STAR_MIN_SPEED;
+	this.color = 'rgb('+
+		Math.floor(Math.random()*155 + 100) + ',' +
+		Math.floor(Math.random()*155 + 100) + ',' +
+		Math.floor(Math.random()*155 + 100) +
+	')';
+	this.size = Math.floor(Math.random()*2) + 1;
 }
 
 Star.prototype.render = function(cameraX, cameraY){
@@ -24,8 +29,9 @@ Star.prototype.render = function(cameraX, cameraY){
 		y += STARFIELD_HEIGHT;
 	}
 
-	ctx.fillStyle='#fff';
-	ctx.fillRect(x, y, STAR_SIZE, STAR_SIZE);
+	console.log(this.color);
+	ctx.fillStyle = this.color;
+	ctx.fillRect(x, y, this.size, this.size);
 }
 
 // Create stars
