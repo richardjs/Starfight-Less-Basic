@@ -50,6 +50,10 @@ io.on('connection', function(socket){
 	game.entities.push(player);
 	socket.player = player;
 
+	socket.on('set name', function(name){
+		player.name = name;
+	});
+
 	socket.on('disconnect', function(){
 		sockets.splice(sockets.indexOf(socket), 1);
 		game.entities.splice(game.entities.indexOf(player), 1);

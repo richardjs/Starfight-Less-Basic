@@ -41,6 +41,20 @@ function initDisplay(){
 			ctx.translate(entity.x, entity.y );
 			switch(entity.type){
 				case 'player':
+					if(entity.name && entity != game.localPlayer){
+						ctx.fillStyle = '#050';
+						ctx.font = '12pt courier';
+						ctx.textAlign = 'center';
+						ctx.fillText(entity.name, 0, -30);
+					}
+
+					/*
+					ctx.fillStyle = '#050';
+					ctx.font = '12pt courier';
+					ctx.textAlign = 'center';
+					ctx.fillText(Math.floor(entity.energy), 0, 40);
+					*/
+
 					ctx.rotate(entity.angle);
 					ctx.drawImage(playerImage, -playerImage.width/2, -playerImage.height/2);
 					break;
@@ -55,6 +69,7 @@ function initDisplay(){
 		}
 		ctx.restore();
 
+		ctx.textAlign = 'left';
 		ctx.fillStyle = '#fff';
 		ctx.font = '18pt courier';
 		ctx.fillText('Energy: ' + Math.floor(game.localPlayer.energy), 10, canvas.height - 20);

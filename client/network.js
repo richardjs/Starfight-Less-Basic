@@ -8,6 +8,7 @@ function initNetwork(){
 
 	socket.on('set id', function(id){
 		window.id = id;
+		socket.emit('set name', localStorage.getItem('name'));
 	});
 
 	socket.on('world update', function(state){
@@ -18,7 +19,8 @@ function initNetwork(){
 				case 'player':
 					var player = new Player();
 					player.game = game;
-					player.id = entityState.id
+					player.id = entityState.id;
+					player.name = entityState.name;
 					player.x = entityState.x;
 					player.y = entityState.y;
 					player.dx = entityState.dx;
