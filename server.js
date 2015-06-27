@@ -11,7 +11,7 @@ var setTimer = require('./core/timer.js');
 
 var PORT = process.env.PORT || 4000;
 var GAME_FPS = 60;
-var NETWORK_FPS = 40;
+var NETWORK_FPS = 60;
 var ARENA_SIZE = 3000;
 
 var app = express();
