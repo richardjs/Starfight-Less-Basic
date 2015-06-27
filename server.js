@@ -10,7 +10,9 @@ var Wall = require('./core/wall.js');
 var setTimer = require('./core/timer.js');
 
 var PORT = process.env.PORT || 4000;
-var NETWORK_FPS = 20;
+var GAME_FPS = 60;
+var NETWORK_FPS = 40;
+var ARENA_SIZE = 3000;
 
 var app = express();
 var server = http.createServer(app);
@@ -21,12 +23,10 @@ app.use('/core', express.static('core'));
 app.use(express.static('static'));
 
 // Game initialization
-var ARENA_SIZE = 3000;
-
 var game = new Game();
 setTimer(function(){
 	game.update();
-}, 1000/60); // TODO hook back in PHYSICS_FPS
+}, 1000/GAME_FPS); // TODO hook back in PHYSICS_FPS
 
 game.mapEntities.push(new Wall(-ARENA_SIZE/2, 0, 10, ARENA_SIZE));
 game.mapEntities.push(new Wall(ARENA_SIZE/2, 0, 10, ARENA_SIZE));
@@ -47,38 +47,38 @@ io.on('connection', function(socket){
 		Math.random() * ARENA_SIZE*.9 - (ARENA_SIZE*.9/2),
 		Math.random() * ARENA_SIZE*.9 - (ARENA_SIZE*.9/2)
 	);
-	socket.player = player;
 	game.entities.push(player);
+	socket.player = player;
 
 	socket.on('disconnect', function(){
 		sockets.splice(sockets.indexOf(socket), 1);
 		game.entities.splice(game.entities.indexOf(player), 1);
 	});
 
-	socket.on('ping', function(time){
-		socket.emit('ping', time);
+	socket.lastSequenceNumber = -1;
+	socket.on('input update', function(state){
+		player.keysDown = state.keysDown;
+		socket.lastSequenceNumber = state.sequenceNumber;
 	});
 
-	socket.on('input update', function(state){
-		player.keysDownBuffer.push(state);
-		// TODO
-		//player.keysDown[90] = state.keysDown[90];
-		//player.keysDown = state.keysDown;
-		//socket.lastSequenceNumber = state.sequenceNumber;
+	socket.on('ping', function(time){
+		socket.volatile.emit('ping', time);
 	});
+
 });
 
-setInterval(function(){
+setTimer(function(){
+	// We need to strip off the game attribute on entities
+	// It causes recusive serialization problems
 	for(var i = 0; i < game.entities.length; i++){
 		delete game.entities[i].game;
 	}
+
 	for(var i = 0; i < sockets.length; i++){
-		if(sockets[i].player.keysDownBuffer[0]){
-			game.lastSequenceNumber = sockets[i].player.keysDownBuffer[0].sequenceNumber - 1;
-		}
-		//game.lastSequenceNumber = sockets[i].lastSequenceNumber;
+		game.lastSequenceNumber = sockets[i].lastSequenceNumber;
 		sockets[i].emit('world update', game);
 	}
+
 	for(var i = 0; i < game.entities.length; i++){
 		game.entities[i].game = game;
 	}

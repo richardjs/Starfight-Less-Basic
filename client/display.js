@@ -53,14 +53,6 @@ function initDisplay(){
 			}
 			ctx.restore();
 		}
-		if(window.serverX){
-			ctx.translate(window.serverX, window.serverY);
-			ctx.fillStyle = '#fff';
-			ctx.beginPath();
-			ctx.arc(-1.5, -1.5, 5, 0, Math.PI*2);
-			ctx.fill();
-
-		}
 		ctx.restore();
 
 		ctx.fillStyle = '#fff';
@@ -69,7 +61,7 @@ function initDisplay(){
 
 		ctx.font = '10px sans serif';
 		ctx.fillStyle = '#fff';
-		ctx.fillText('Ping: ' + latency*2, 10, 10);
+		ctx.fillText('Ping: ' + ping, 10, 10);
 		ctx.fillText('Buffered input: ' + inputs.length, 10, 20);
 
 		requestAnimationFrame(render);

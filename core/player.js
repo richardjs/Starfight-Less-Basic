@@ -5,6 +5,8 @@ if(typeof(require) !== 'undefined'){
 	var Bullet = require('./bullet');
 }
 
+var GAME_FPS = 60;
+
 var PLAYER_ACCELERATION = 10 * 1000/60 / 1000;
 var PLAYER_TURN_SPEED = Math.PI*2 * 1000/60 / 1000;
 
@@ -16,7 +18,7 @@ var PLAYER_AFTERBURNER_ACCELERATION = 40 * 1000/60 / 1000;
 var PLAYER_AFTERBURNER_COST = 500 * 1000/60/1000;
 
 var PLAYER_BULLET_COST = 50;
-var PLAYER_BULLET_DELAY = 1000;
+var PLAYER_BULLET_DELAY = 250;
 
 var PLAYER_COLLISION_SIZE = 10;
 
@@ -34,7 +36,6 @@ function Player(game, id, x, y){
 	this.collisionSize = PLAYER_COLLISION_SIZE;
 
 	this.keysDown = {};
-	this.keysDownBuffer = [];
 
 	this.energy = PLAYER_STARTING_ENERGY;
 
@@ -45,10 +46,6 @@ Player.prototype = Object.create(Entity.prototype);
 
 var turnCount = 0;
 Player.prototype.update = function(){
-	if(this.keysDownBuffer.length){
-		this.keysDown = this.keysDownBuffer.shift().keysDown;
-	}
-
 	// Rotate
 	if(this.keysDown[37]){
 		this.angle -= PLAYER_TURN_SPEED;
@@ -77,7 +74,7 @@ Player.prototype.update = function(){
 
 	// Bullets
 	if(this.bulletTimer > 0){
-		this.bulletTimer -= 1000/60;
+		this.bulletTimer -= 1000/GAME_FPS;
 	}
 	if(this.keysDown[90] && this.energy > PLAYER_BULLET_COST && this.bulletTimer <= 0){
 		this.energy -= PLAYER_BULLET_COST;
@@ -85,7 +82,7 @@ Player.prototype.update = function(){
 		this.bulletTimer = PLAYER_BULLET_DELAY;
 	}
 
-	this.keysDown = {};
+	//this.keysDown = {};
 
 	Entity.prototype.update.call(this);
 

@@ -1,6 +1,6 @@
 'use strict';
 
-var INPUT_FPS = 60;
+var GAME_FPS = 60;
 
 function initInput(){
 	window.inputs = [];
@@ -11,15 +11,18 @@ function initInput(){
 		keysDown[event.which] = true;
 	});
 	document.body.addEventListener('keyup', function(event){
-		keysDown[event.which] = false;
+		delete keysDown[event.which];
 	});
 
 	var nextSequenceNumber = 0;
 	setTimer(function(){
+		if(!game.localPlayer){
+			return;
+		}
+
 		var input = {
 			keysDown: {},
-			sequenceNumber: nextSequenceNumber++,
-			time: Date.now()
+			sequenceNumber: nextSequenceNumber++
 		}
 		var keys = Object.keys(keysDown);
 		for(var i = 0; i < keys.length; i++){
@@ -29,9 +32,7 @@ function initInput(){
 
 		socket.emit('input update', input);
 
-		if(game.localPlayer){
-			game.localPlayer.keysDown = keysDown;
-		}
+		game.localPlayer.keysDown = keysDown;
 		game.update();
-	}, 1000/(INPUT_FPS));
+	}, 1000/GAME_FPS);
 }

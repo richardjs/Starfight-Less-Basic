@@ -68,11 +68,11 @@ function initNetwork(){
 		}
 	});
 
-	window.latency = undefined;
+	window.ping = null;
 	setInterval(function(){
 		socket.emit('ping', Date.now());
 	}, 1000/PING_FPS);
 	socket.on('ping', function(time){
-		latency = (Date.now() - time) / 2;
+		ping = (Date.now() - time);
 	});
 }

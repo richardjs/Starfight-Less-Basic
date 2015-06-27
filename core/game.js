@@ -1,17 +1,9 @@
 'use strict';
 
-var PHYSICS_FPS = 60;
-
 function Game(){
 	this.entities = [];
 	this.mapEntities = [];
 	this.localPlayer = null;
-}
-
-Game.prototype.start = function(){
-	setInterval(function(){
-		this.update();
-	}.bind(this), 1000/PHYSICS_FPS);
 }
 
 Game.prototype.update = function(){
