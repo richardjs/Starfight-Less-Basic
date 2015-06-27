@@ -44,8 +44,14 @@ function initDisplay(){
 					if(entity.dead){
 						break;
 					}
-					if(entity.name && entity != game.localPlayer){
-						ctx.fillStyle = '#050';
+					if(entity.name && entity){
+						if(entity.energy > PLAYER_STARTING_ENERGY * .5){
+							ctx.fillStyle = '#050';
+						}else if(entity.energy > PLAYER_STARTING_ENERGY * .15){
+							ctx.fillStyle = '#550';
+						}else{
+							ctx.fillStyle = '#500';
+						}
 						ctx.font = '12pt courier';
 						ctx.textAlign = 'center';
 						ctx.fillText(entity.name, 0, -30);
@@ -80,7 +86,7 @@ function initDisplay(){
 
 		if(game.localPlayer.energy > PLAYER_STARTING_ENERGY * .5){
 			ctx.fillStyle = '#0f0';
-		}else if(game.localPlayer.energy > PLAYER_STARTING_ENERGY * .2){
+		}else if(game.localPlayer.energy > PLAYER_STARTING_ENERGY * .15){
 			ctx.fillStyle = '#ff0';
 		}else{
 			ctx.fillStyle = '#f00';
