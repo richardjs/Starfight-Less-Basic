@@ -42,8 +42,8 @@ Bullet.prototype.update = function(){
 				&& Math.abs(entity.y - this.y) < (entity.collisionSize + this.collisionSize)/2
 				&& entity.id !== this.playerID
 				&& !entity.dead){
-			entity.damage(BULLET_DAMAGE);
 			this.game.entities.splice(this.game.entities.indexOf(this), 1);
+			entity.damage(BULLET_DAMAGE, this);
 		}
 			
 	}

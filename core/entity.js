@@ -44,7 +44,7 @@ Entity.prototype.update = function(){
 	}
 }
 
-Entity.prototype.damage = function(amount){}
+Entity.prototype.damage = function(amount, source){}
 
 if(typeof(module) !== 'undefined'){
 	module.exports = Entity;

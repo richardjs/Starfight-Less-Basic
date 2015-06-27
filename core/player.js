@@ -116,7 +116,7 @@ Player.prototype.update = function(){
 	}
 }
 
-Player.prototype.damage = function(amount){
+Player.prototype.damage = function(amount, source){
 	if(this.dead){
 		return;
 	}
@@ -124,6 +124,7 @@ Player.prototype.damage = function(amount){
 	if(this.energy <= 0){
 		this.energy = 0;
 		this.dead = true;
+		this.killerID = source.playerID;
 		this.respawning = false;
 	}
 }
