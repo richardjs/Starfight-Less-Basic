@@ -20,7 +20,7 @@ var PLAYER_AFTERBURNER_COST = 500 * 1000/GAME_FPS/1000;
 var PLAYER_BULLET_COST = 50;
 var PLAYER_BULLET_DELAY = 200;
 
-var PLAYER_COLLISION_SIZE = 10;
+var PLAYER_COLLISION_SIZE = 20;
 
 function Player(game, id, x, y){
 	this.type = 'player';
