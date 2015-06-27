@@ -2,6 +2,7 @@
 
 var LOW_ENERGY = .33 * PLAYER_STARTING_ENERGY;
 var MED_ENERGY = .66 * PLAYER_STARTING_ENERGY;
+var GAME_WIN_SCORE = 200;
 
 function initDisplay(){
 	window.canvas = document.createElement('canvas');
@@ -116,6 +117,36 @@ function initDisplay(){
 			ctx.textAlign = 'left';
 			ctx.font = '18pt courier';
 			ctx.fillText('Energy: ' + Math.floor(game.localPlayer.energy), 10, canvas.height - 20);
+		}
+		
+		// Scoreboard
+		var sorted = [];
+		for(var i = 0; i < game.entities.length; i++){
+			var entity = game.entities[i];
+			if(entity.type !== 'player'){
+				continue;
+			}
+			var j;
+			for(j = 0; j < sorted.length; j++){
+				if(entity.score > sorted[j].score){
+					break;
+				}
+			}
+			sorted.splice(j, 0, entity);
+		}
+		ctx.textAlign = 'right';
+		ctx.font = '12pt courier';
+		ctx.fillStyle = '#080';
+		for(var i = 0; i < sorted.length; i++){
+			var entity = sorted[i]
+			if(entity.score < GAME_WIN_SCORE * .33){
+				ctx.fillStyle = '#080';
+			}else if(entity.score < GAME_WIN_SCORE * .66){
+				ctx.fillStyle = '#880';
+			}else{
+				ctx.fillStyle = '#800';
+			}
+			ctx.fillText(entity.name + ' ' + entity.score, canvas.width - 10, 20 + 15*i);
 		}
 
 		/*
