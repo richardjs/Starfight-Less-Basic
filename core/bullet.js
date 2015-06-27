@@ -38,8 +38,8 @@ Bullet.prototype.update = function(){
 		if(entity.type !== 'player'){
 			continue;
 		}
-		if(Math.abs(entity.x - this.x) < entity.collisionSize + this.collisionSize
-				&& Math.abs(entity.x - this.x) < entity.collisionSize + this.collisionSize
+		if(Math.abs(entity.x - this.x) < (entity.collisionSize + this.collisionSize)/2
+				&& Math.abs(entity.y - this.y) < (entity.collisionSize + this.collisionSize)/2
 				&& entity.id !== this.playerID
 				&& !entity.dead){
 			entity.damage(BULLET_DAMAGE);
