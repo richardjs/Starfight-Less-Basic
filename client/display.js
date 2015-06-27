@@ -1,5 +1,8 @@
 'use strict';
 
+var LOW_ENERGY = .33 * PLAYER_STARTING_ENERGY;
+var MED_ENERGY = .66 * PLAYER_STARTING_ENERGY;
+
 function initDisplay(){
 	window.canvas = document.createElement('canvas');
 	window.ctx = canvas.getContext('2d');
@@ -45,9 +48,9 @@ function initDisplay(){
 						break;
 					}
 					if(entity.name && entity){
-						if(entity.energy > PLAYER_STARTING_ENERGY * .5){
+						if(entity.energy > MED_ENERGY){
 							ctx.fillStyle = '#050';
-						}else if(entity.energy > PLAYER_STARTING_ENERGY * .15){
+						}else if(entity.energy > LOW_ENERGY){
 							ctx.fillStyle = '#550';
 						}else{
 							ctx.fillStyle = '#500';
@@ -84,9 +87,9 @@ function initDisplay(){
 		}
 		ctx.restore();
 
-		if(game.localPlayer.energy > PLAYER_STARTING_ENERGY * .5){
+		if(game.localPlayer.energy > MED_ENERGY){
 			ctx.fillStyle = '#0f0';
-		}else if(game.localPlayer.energy > PLAYER_STARTING_ENERGY * .15){
+		}else if(game.localPlayer.energy > LOW_ENERGY){
 			ctx.fillStyle = '#ff0';
 		}else{
 			ctx.fillStyle = '#f00';

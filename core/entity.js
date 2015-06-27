@@ -1,6 +1,6 @@
 'use strict';
 
-var WALL_COLLISION_DAMAGE = 10;
+var WALL_COLLISION_DAMAGE = 2;
 
 function Entity(){}
 
