@@ -9,7 +9,12 @@ function initDisplay(){
 
 	canvas.width = window.innerWidth;
 	canvas.height = window.innerHeight;
+	window.addEventListener('resize', function(){
+		canvas.width = window.innerWidth;
+		canvas.height = window.innerHeight;
+	});
 	document.body.appendChild(canvas);
+
 
 	function render(){
 		ctx.fillStyle = 'black';
