@@ -34,8 +34,9 @@ function initNetwork(){
 						window.serverX = player.x;
 						window.serverY = player.y;
 					}
-
-					game.entities.push(player);
+					else{
+						game.entities.push(player);
+					}
 					break;
 
 				case 'bullet':
@@ -52,6 +53,7 @@ function initNetwork(){
 					break;
 			}
 		}
+		game.entities.push(game.localPlayer);
 
 		game.mapEntities = [];
 		for(var i = 0; i < state.mapEntities.length; i++){

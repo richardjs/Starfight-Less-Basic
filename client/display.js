@@ -46,6 +46,12 @@ function initDisplay(){
 						ctx.font = '12pt courier';
 						ctx.textAlign = 'center';
 						ctx.fillText(entity.name, 0, -30);
+
+						ctx.strokeStyle = '#333';
+						ctx.beginPath();
+						ctx.moveTo(0, 0);
+						ctx.lineTo(game.localPlayer.x - entity.x, game.localPlayer.y - entity.y);
+						ctx.stroke();
 					}
 
 					/*
