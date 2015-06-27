@@ -17,6 +17,9 @@ var PLAYER_THRUSTER_COST = 25 * 1000/GAME_FPS/1000;
 var PLAYER_AFTERBURNER_ACCELERATION = 40 * 1000/GAME_FPS/1000;
 var PLAYER_AFTERBURNER_COST = 350 * 1000/GAME_FPS/1000;
 
+var PLAYER_BRAKE_DECELERATION = 10 * 1000/GAME_FPS/1000;
+var PLAYER_BRAKE_COST = 150 * 1000/GAME_FPS/1000;
+
 var PLAYER_BULLET_COST = 50;
 var PLAYER_BULLET_DELAY = 200;
 
@@ -76,6 +79,20 @@ Player.prototype.update = function(){
 		this.dx -= Math.cos(this.angle) * acceleration;
 		this.dy -= Math.sin(this.angle) * acceleration;
 		this.energy -= cost;
+	}
+
+	// Brake
+	if(this.keysDown[83] && this.energy > PLAYER_BRAKE_COST
+			&& Math.abs(this.dx) > 0 && Math.abs(this.dy) > 0){
+		var speed = Math.sqrt(Math.pow(this.dx, 2) + Math.pow(this.dy, 2));
+		var angle = Math.atan2(this.dy, this.dx);
+		speed -= PLAYER_BRAKE_DECELERATION;
+		if(speed < 0){
+			speed = 0;
+		}
+		this.dx = Math.cos(angle) * speed;
+		this.dy = Math.sin(angle) * speed;
+		this.energy -= PLAYER_BRAKE_COST;
 	}
 
 	// Bullets
