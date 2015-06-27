@@ -8,7 +8,8 @@ var GAME_FPS = 60;
 
 var BULLET_SPEED = 500 * 1000/GAME_FPS/1000;
 var BULLET_DAMAGE = 200;
-var BULLET_COLLISION_SIZE = 5;
+var BULLET_COLLISION_SIZE = 7;
+var BULLET_TTL = 1500;
 
 function Bullet(game, player){
 	this.type = 'bullet';
@@ -22,7 +23,7 @@ function Bullet(game, player){
 		this.dx += Math.cos(player.angle) * BULLET_SPEED;
 		this.dy += Math.sin(player.angle) * BULLET_SPEED;
 	}
-	this.ttl = 1000;
+	this.ttl = BULLET_TTL;
 	this.collisionSize = BULLET_COLLISION_SIZE;
 }
 
