@@ -41,6 +41,9 @@ function initDisplay(){
 			ctx.translate(entity.x, entity.y );
 			switch(entity.type){
 				case 'player':
+					if(entity.dead){
+						break;
+					}
 					if(entity.name && entity != game.localPlayer){
 						ctx.fillStyle = '#050';
 						ctx.font = '12pt courier';

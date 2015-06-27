@@ -13,6 +13,7 @@ var PORT = process.env.PORT || 4000;
 var GAME_FPS = 60;
 var NETWORK_FPS = 60;
 var ARENA_SIZE = 1500;
+var RESPAWN_TIME = 1000 * 5;
 
 var app = express();
 var server = http.createServer(app);
@@ -26,6 +27,22 @@ app.use(express.static('static'));
 var game = new Game();
 setTimer(function(){
 	game.update();
+	for(var i = 0; i < game.entities.length; i++){
+		var entity = game.entities[i];
+		if(entity.dead){
+			if(!entity.respawning){
+				(function(entity){
+					setTimeout(function(){
+						entity.reset(
+							Math.random() * ARENA_SIZE*.9 - (ARENA_SIZE*.9/2),
+							Math.random() * ARENA_SIZE*.9 - (ARENA_SIZE*.9/2)
+						);
+					}, RESPAWN_TIME);
+				})(entity);
+			}
+			entity.respawning = true;
+		}
+	}
 }, 1000/GAME_FPS); // TODO hook back in PHYSICS_FPS
 
 game.mapEntities.push(new Wall(-ARENA_SIZE/2, 0, 10, ARENA_SIZE));

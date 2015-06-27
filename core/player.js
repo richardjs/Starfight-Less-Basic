@@ -26,6 +26,13 @@ function Player(game, id, x, y){
 	this.type = 'player';
 	this.game = game;
 	this.id = id;
+	this.keysDown = {};
+	this.reset(x, y);
+}
+
+Player.prototype = Object.create(Entity.prototype);
+
+Player.prototype.reset = function(x, y){
 	this.x = x;	
 	this.y = y;	
 	this.lastX = x;
@@ -34,18 +41,17 @@ function Player(game, id, x, y){
 	this.dy = 0;
 	this.angle = Math.random() * Math.PI*2;
 	this.collisionSize = PLAYER_COLLISION_SIZE;
-
-	this.keysDown = {};
-
 	this.energy = PLAYER_STARTING_ENERGY;
-
 	this.bulletTimer = 0;
+	this.dead = false;
 }
-
-Player.prototype = Object.create(Entity.prototype);
 
 var turnCount = 0;
 Player.prototype.update = function(){
+	if(this.dead){
+		return;
+	}
+	
 	// Rotate
 	if(this.keysDown[37]){
 		this.angle -= PLAYER_TURN_SPEED;
@@ -93,8 +99,15 @@ Player.prototype.update = function(){
 }
 
 Player.prototype.damage = function(amount){
+	if(this.dead){
+		return;
+	}
 	this.energy -= amount;
-	// TODO 
+	if(this.energy <= 0){
+		this.energy = 0;
+		this.dead = true;
+		this.respawning = false;
+	}
 }
 
 if(typeof(module) !== 'undefined'){
