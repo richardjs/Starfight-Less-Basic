@@ -86,21 +86,25 @@ function initDisplay(){
 		}
 		ctx.restore();
 
-		if(game.localPlayer.energy > MED_ENERGY){
-			ctx.fillStyle = '#0f0';
-		}else if(game.localPlayer.energy > LOW_ENERGY){
-			ctx.fillStyle = '#ff0';
-		}else{
-			ctx.fillStyle = '#f00';
+		if(!game.localPlayer.dead){
+			if(game.localPlayer.energy > MED_ENERGY){
+				ctx.fillStyle = '#0f0';
+			}else if(game.localPlayer.energy > LOW_ENERGY){
+				ctx.fillStyle = '#ff0';
+			}else{
+				ctx.fillStyle = '#f00';
+			}
+			ctx.textAlign = 'left';
+			ctx.font = '18pt courier';
+			ctx.fillText('Energy: ' + Math.floor(game.localPlayer.energy), 10, canvas.height - 20);
 		}
-		ctx.textAlign = 'left';
-		ctx.font = '18pt courier';
-		ctx.fillText('Energy: ' + Math.floor(game.localPlayer.energy), 10, canvas.height - 20);
 
+		/*
 		ctx.font = '10px sans serif';
 		ctx.fillStyle = '#fff';
 		ctx.fillText('Ping: ' + ping, 10, 10);
 		ctx.fillText('Buffered input: ' + inputs.length, 10, 20);
+		*/
 
 		requestAnimationFrame(render);
 	}

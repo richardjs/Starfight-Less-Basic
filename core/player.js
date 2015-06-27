@@ -106,7 +106,7 @@ Player.prototype.update = function(){
 		this.bulletTimer = PLAYER_BULLET_DELAY;
 	}
 
-	//this.keysDown = {};
+	this.keysDown = {};
 
 	Entity.prototype.update.call(this);
 

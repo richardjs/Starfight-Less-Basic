@@ -12,7 +12,7 @@ var setTimer = require('./core/timer.js');
 var PORT = process.env.PORT || 4000;
 var GAME_FPS = 60;
 var NETWORK_FPS = 60;
-var ARENA_SIZE = 1500;
+var ARENA_SIZE = 3000;
 var RESPAWN_TIME = 1000 * 5;
 
 var app = express();
