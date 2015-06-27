@@ -49,10 +49,12 @@ function initDisplay(){
 			ctx.translate(entity.x, entity.y );
 			switch(entity.type){
 				case 'player':
-					if(entity.dead){
-						break;
-					}
-					if(entity.name && entity){
+					ctx.fillStyle = '#050';
+					ctx.font = '12pt courier';
+					ctx.textAlign = 'center';
+					ctx.fillText(Math.floor(entity.score), 0, 40);
+
+					if(entity.name){
 						if(entity.energy > MED_ENERGY){
 							ctx.fillStyle = '#050';
 						}else if(entity.energy > LOW_ENERGY){
@@ -71,17 +73,16 @@ function initDisplay(){
 						}else{
 							ctx.strokeStyle = '#300';
 						}
-						ctx.beginPath();
-						ctx.moveTo(0, 0);
-						ctx.lineTo(game.localPlayer.x - entity.x, game.localPlayer.y - entity.y);
-						ctx.stroke();
 					}
 
+					if(entity.dead){
+						break;
+					}
 					
-					ctx.fillStyle = '#050';
-					ctx.font = '12pt courier';
-					ctx.textAlign = 'center';
-					ctx.fillText(Math.floor(entity.score), 0, 40);
+					ctx.beginPath();
+					ctx.moveTo(0, 0);
+					ctx.lineTo(game.localPlayer.x - entity.x, game.localPlayer.y - entity.y);
+					ctx.stroke();
 
 					ctx.rotate(entity.angle);
 					ctx.drawImage(playerImage, -playerImage.width/2, -playerImage.height/2);
