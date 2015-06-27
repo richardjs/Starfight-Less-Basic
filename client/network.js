@@ -63,7 +63,7 @@ function initNetwork(){
 		if(game.localPlayer){
 			for(var i = 0; i < inputs.length; i++){
 				game.localPlayer.keysDown = inputs[i].keysDown;
-				game.localPlayer.update();
+				game.update();
 			}
 		}
 	});
