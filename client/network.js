@@ -21,6 +21,7 @@ function initNetwork(){
 					player.game = game;
 					player.id = entityState.id;
 					player.name = entityState.name;
+					player.score = entityState.score;
 					player.x = entityState.x;
 					player.y = entityState.y;
 					player.dx = entityState.dx;

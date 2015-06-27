@@ -66,12 +66,11 @@ function initDisplay(){
 						ctx.stroke();
 					}
 
-					/*
+					
 					ctx.fillStyle = '#050';
 					ctx.font = '12pt courier';
 					ctx.textAlign = 'center';
-					ctx.fillText(Math.floor(entity.energy), 0, 40);
-					*/
+					ctx.fillText(Math.floor(entity.score), 0, 40);
 
 					ctx.rotate(entity.angle);
 					ctx.drawImage(playerImage, -playerImage.width/2, -playerImage.height/2);

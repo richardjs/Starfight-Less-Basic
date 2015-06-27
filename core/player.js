@@ -29,6 +29,7 @@ function Player(game, id, x, y){
 	this.type = 'player';
 	this.game = game;
 	this.id = id;
+	this.score = 0;
 	this.keysDown = {};
 	this.reset(x, y);
 }
