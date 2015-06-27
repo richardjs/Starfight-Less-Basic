@@ -69,8 +69,14 @@ function initDisplay(){
 		}
 		ctx.restore();
 
+		if(game.localPlayer.energy > PLAYER_STARTING_ENERGY * .5){
+			ctx.fillStyle = '#0f0';
+		}else if(game.localPlayer.energy > PLAYER_STARTING_ENERGY * .2){
+			ctx.fillStyle = '#ff0';
+		}else{
+			ctx.fillStyle = '#f00';
+		}
 		ctx.textAlign = 'left';
-		ctx.fillStyle = '#fff';
 		ctx.font = '18pt courier';
 		ctx.fillText('Energy: ' + Math.floor(game.localPlayer.energy), 10, canvas.height - 20);
 

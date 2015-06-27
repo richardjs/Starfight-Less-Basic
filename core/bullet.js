@@ -4,7 +4,11 @@ if(typeof(require) !== 'undefined'){
 	var Entity = require('./entity.js');
 }
 
-var BULLET_SPEED = 250 * 1000/60/1000;
+var GAME_FPS = 60;
+
+var BULLET_SPEED = 250 * 1000/GAME_FPS/1000;
+var BULLET_DAMAGE = 200;
+var BULLET_COLLISION_SIZE = 3;
 
 function Bullet(game, player){
 	this.type = 'bullet';
@@ -19,6 +23,7 @@ function Bullet(game, player){
 		this.dy += Math.sin(player.angle) * BULLET_SPEED;
 	}
 	this.ttl = 1000;
+	this.collisionSize = BULLET_COLLISION_SIZE;
 }
 
 Bullet.prototype = Object.create(Entity.prototype);
@@ -27,6 +32,19 @@ Bullet.prototype.update = function(){
 	this.ttl -= 1000/60;
 	if(this.ttl <= 0){
 		this.game.entities.splice(this.game.entities.indexOf(this), 1);
+	}
+	for(var i = 0; i < this.game.entities.length; i++){
+		var entity = this.game.entities[i];
+		if(entity.type !== 'player'){
+			continue;
+		}
+		if(Math.abs(entity.x - this.x) < entity.collisionSize + this.collisionSize
+				&& Math.abs(entity.x - this.x) < entity.collisionSize + this.collisionSize
+				&& entity.id !== this.playerID){
+			entity.damage(BULLET_DAMAGE);
+			this.game.entities.splice(this.game.entities.indexOf(this), 1);
+		}
+			
 	}
 	Entity.prototype.update.call(this);
 }
