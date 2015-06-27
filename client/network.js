@@ -62,6 +62,8 @@ function initNetwork(){
 			var entityState = state.mapEntities[i];
 			game.mapEntities.push(new Wall(entityState.x, entityState.y, entityState.width, entityState.height));
 		}
+
+		game.message = state.message;
 		
 		while(inputs.length && inputs[0].sequenceNumber <= state.lastSequenceNumber){
 			inputs.shift();

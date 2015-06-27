@@ -98,6 +98,13 @@ function initDisplay(){
 		}
 		ctx.restore();
 
+		if(game.message){
+			ctx.font = '24pt courier';
+			ctx.fillStyle = '#55a';
+			ctx.textAlign = 'center';
+			ctx.fillText(game.message, canvas.width/2, canvas.height/2 - 50);
+		}
+
 		if(!game.localPlayer.dead){
 			if(game.localPlayer.energy > MED_ENERGY){
 				ctx.fillStyle = '#0f0';

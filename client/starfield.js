@@ -29,7 +29,6 @@ Star.prototype.render = function(cameraX, cameraY){
 		y += STARFIELD_HEIGHT;
 	}
 
-	console.log(this.color);
 	ctx.fillStyle = this.color;
 	ctx.fillRect(x, y, this.size, this.size);
 }

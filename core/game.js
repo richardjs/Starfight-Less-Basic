@@ -4,6 +4,7 @@ function Game(){
 	this.entities = [];
 	this.mapEntities = [];
 	this.localPlayer = null;
+	this.message = '';
 }
 
 Game.prototype.update = function(){
