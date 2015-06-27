@@ -33,14 +33,16 @@ setTimer(function(){
 		var entity = game.entities[i];
 		if(entity.dead){
 			if(!entity.respawning){
-				var killer;
-				for(var j = 0; j < game.entities.length; j++){
-					if(game.entities[j].id === entity.killerID){
-						killer = game.entities[j];
+				if(entity.killerID){
+					var killer;
+					for(var j = 0; j < game.entities.length; j++){
+						if(game.entities[j].id === entity.killerID){
+							killer = game.entities[j];
+						}
 					}
+					killer.score += 10 + Math.floor(entity.score / 2);
+					entity.score = Math.floor(entity.score / 2);
 				}
-				killer.score += 10 + Math.floor(entity.score / 2);
-				entity.score = Math.floor(entity.score / 2);
 
 				(function(entity){
 					setTimeout(function(){

@@ -124,8 +124,11 @@ Player.prototype.damage = function(amount, source){
 	if(this.energy <= 0){
 		this.energy = 0;
 		this.dead = true;
-		this.killerID = source.playerID;
 		this.respawning = false;
+
+		if(source){
+			this.killerID = source.playerID;
+		}
 	}
 }
 
