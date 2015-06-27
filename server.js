@@ -40,10 +40,10 @@ setTimer(function(){
 							killer = game.entities[j];
 						}
 					}
-					killer.score += 10 + Math.floor(entity.score / 2);
-					entity.score = Math.floor(entity.score / 2);
+					killer.score += 10 + Math.floor(entity.score*.1);
+					entity.score = Math.floor(entity.score*.9);
 				}else{
-					entity.score = entity.score/2;
+					entity.score = Math.floor(entity.score*.8);
 				}
 
 				(function(entity){
