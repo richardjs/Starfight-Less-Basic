@@ -16,6 +16,7 @@ function initDisplay(){
 	});
 	document.body.appendChild(canvas);
 
+	window.stardust = new Stardust();
 
 	function render(){
 		ctx.fillStyle = 'black';
