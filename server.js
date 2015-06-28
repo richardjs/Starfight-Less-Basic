@@ -35,10 +35,10 @@ setTimer(function(){
 		var entity = game.entities[i];
 		if(entity.dead){
 			if(!entity.respawning){
-				if(entity.killerID){
+				if(entity.lastHitID){
 					var killer;
 					for(var j = 0; j < game.entities.length; j++){
-						if(game.entities[j].id === entity.killerID){
+						if(game.entities[j].id === entity.lastHitID){
 							killer = game.entities[j];
 						}
 					}
@@ -60,8 +60,6 @@ setTimer(function(){
 							game.message = '';
 						}, GAME_END_TIME);
 					}
-				}else{
-					entity.score = Math.floor(entity.score*.7);
 				}
 
 				(function(entity){

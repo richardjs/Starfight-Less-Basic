@@ -48,7 +48,6 @@ Player.prototype.reset = function(x, y){
 	this.energy = PLAYER_STARTING_ENERGY;
 	this.bulletTimer = 0;
 	this.dead = false;
-	this.killerID = null;
 }
 
 var turnCount = 0;
@@ -121,15 +120,14 @@ Player.prototype.damage = function(amount, source){
 	if(this.dead){
 		return;
 	}
+	if(source){
+		this.lastHitID = source.playerID;
+	}
 	this.energy -= amount;
 	if(this.energy <= 0){
 		this.energy = 0;
 		this.dead = true;
 		this.respawning = false;
-
-		if(source){
-			this.killerID = source.playerID;
-		}
 	}
 }
 
