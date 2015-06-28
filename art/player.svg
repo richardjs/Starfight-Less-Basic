@@ -7,6 +7,7 @@
    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
    xmlns:svg="http://www.w3.org/2000/svg"
    xmlns="http://www.w3.org/2000/svg"
+   xmlns:xlink="http://www.w3.org/1999/xlink"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
    width="744.09448819"
@@ -14,9 +15,103 @@
    id="svg2"
    version="1.1"
    inkscape:version="0.48.2 r9819"
-   sodipodi:docname="New document 1">
+   sodipodi:docname="player.svg">
   <defs
-     id="defs4" />
+     id="defs4">
+    <linearGradient
+       id="linearGradient3818">
+      <stop
+         style="stop-color:#828610;stop-opacity:1;"
+         offset="0"
+         id="stop3820" />
+      <stop
+         id="stop3822"
+         offset="0.5"
+         style="stop-color:#c1c729;stop-opacity:1;" />
+      <stop
+         style="stop-color:#828610;stop-opacity:1;"
+         offset="1"
+         id="stop3824" />
+    </linearGradient>
+    <linearGradient
+       id="linearGradient3782">
+      <stop
+         id="stop3784"
+         offset="0"
+         style="stop-color:#291086;stop-opacity:1;" />
+      <stop
+         style="stop-color:#411ad6;stop-opacity:1;"
+         offset="0.5"
+         id="stop3786" />
+      <stop
+         id="stop3788"
+         offset="1"
+         style="stop-color:#291086;stop-opacity:1;" />
+    </linearGradient>
+    <linearGradient
+       id="linearGradient3774">
+      <stop
+         style="stop-color:#0000c8;stop-opacity:1;"
+         offset="0"
+         id="stop3776" />
+      <stop
+         style="stop-color:#0000c8;stop-opacity:0;"
+         offset="1"
+         id="stop3778" />
+    </linearGradient>
+    <linearGradient
+       id="linearGradient3760">
+      <stop
+         style="stop-color:#861010;stop-opacity:1;"
+         offset="0"
+         id="stop3762" />
+      <stop
+         id="stop3768"
+         offset="0.5"
+         style="stop-color:#d61a1a;stop-opacity:1;" />
+      <stop
+         style="stop-color:#861010;stop-opacity:1;"
+         offset="1"
+         id="stop3764" />
+    </linearGradient>
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient3760"
+       id="linearGradient3766"
+       x1="349.875"
+       y1="532.36218"
+       x2="380.125"
+       y2="532.36218"
+       gradientUnits="userSpaceOnUse" />
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient3782"
+       id="linearGradient3780"
+       x1="360.875"
+       y1="528.86218"
+       x2="369.125"
+       y2="528.86218"
+       gradientUnits="userSpaceOnUse" />
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient3782"
+       id="linearGradient3806"
+       x1="362.875"
+       y1="540.36218"
+       x2="367.125"
+       y2="540.36218"
+       gradientUnits="userSpaceOnUse"
+       gradientTransform="matrix(1,0,0,1.1666662,0,-90.560126)" />
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient3818"
+       id="linearGradient3816"
+       x1="361.875"
+       y1="539.36218"
+       x2="368.125"
+       y2="539.36218"
+       gradientUnits="userSpaceOnUse" />
+  </defs>
   <sodipodi:namedview
      id="base"
      pagecolor="#ffffff"
@@ -24,14 +119,14 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="5.6"
-     inkscape:cx="361.93981"
-     inkscape:cy="525.91734"
+     inkscape:zoom="11.2"
+     inkscape:cx="372.17911"
+     inkscape:cy="520.60619"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="true"
-     inkscape:window-width="796"
-     inkscape:window-height="564"
+     inkscape:window-width="1065"
+     inkscape:window-height="687"
      inkscape:window-x="4"
      inkscape:window-y="0"
      inkscape:window-maximized="0">
@@ -56,10 +151,62 @@
      inkscape:groupmode="layer"
      id="layer1">
     <path
-       style="fill:#f00000;stroke:#000000;stroke-width:0.25;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;fill-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
+       style="fill:#656565;fill-opacity:1;stroke:#000000;stroke-width:0.25;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       d="m 364,544.36218 -2,5 6,0 -2,-5 z"
+       id="path3772"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="ccccc"
+       inkscape:export-filename="/Users/richard/code/networking-for-real/static/img/player.png"
+       inkscape:export-xdpi="149.22279"
+       inkscape:export-ydpi="149.22279" />
+    <path
+       style="fill:url(#linearGradient3766);fill-opacity:1;stroke:#000000;stroke-width:0.25;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
        d="m 365,517.36218 -5,20 -10,-10 0,10 5,5 5,5 5,-2 5,2 5,-5 5,-5 0,-10 -10,10 -5,-20"
        id="path2987"
        inkscape:connector-curvature="0"
-       sodipodi:nodetypes="ccccccccccccc" />
+       sodipodi:nodetypes="ccccccccccccc"
+       inkscape:export-filename="/Users/richard/code/networking-for-real/static/img/player.png"
+       inkscape:export-xdpi="149.22279"
+       inkscape:export-ydpi="149.22279" />
+    <path
+       style="fill:url(#linearGradient3780);fill-opacity:1.0;stroke:#000000;stroke-width:0.25000000000000000;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       d="m 361,532.36218 2,-7 4,0 2,7 z"
+       id="path2984"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="/Users/richard/code/networking-for-real/static/img/player.png"
+       inkscape:export-xdpi="149.22279"
+       inkscape:export-ydpi="149.22279"
+       sodipodi:nodetypes="ccccc" />
+    <path
+       style="fill:#9a9a9a;fill-opacity:1;stroke:#000000;stroke-width:0.25;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       d="m 352,539.36218 2,0 4,4 0,2 z"
+       id="path3756"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="/Users/richard/code/networking-for-real/static/img/player.png"
+       inkscape:export-xdpi="149.22279"
+       inkscape:export-ydpi="149.22279"
+       sodipodi:nodetypes="ccccc" />
+    <path
+       inkscape:connector-curvature="0"
+       id="path3758"
+       d="m 378,539.36218 -2,0 -4,4 0,2 z"
+       style="fill:#9a9a9a;fill-opacity:1;stroke:#000000;stroke-width:0.25;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       inkscape:export-filename="/Users/richard/code/networking-for-real/static/img/player.png"
+       inkscape:export-xdpi="149.22279"
+       inkscape:export-ydpi="149.22279"
+       sodipodi:nodetypes="ccccc" />
+    <path
+       sodipodi:type="arc"
+       style="fill:url(#linearGradient3816);fill-opacity:1.0;stroke:#000000;stroke-width:0.25000000000000000;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       id="path3808"
+       sodipodi:cx="365"
+       sodipodi:cy="539.36218"
+       sodipodi:rx="3"
+       sodipodi:ry="3"
+       d="m 368,539.36218 a 3,3 0 1 1 -6,0 3,3 0 1 1 6,0 z"
+       transform="matrix(1,0,0,1.3333333,0,-179.78739)"
+       inkscape:export-filename="/Users/richard/code/networking-for-real/static/img/player.png"
+       inkscape:export-xdpi="149.22279"
+       inkscape:export-ydpi="149.22279" />
   </g>
 </svg>

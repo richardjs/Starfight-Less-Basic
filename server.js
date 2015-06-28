@@ -74,7 +74,7 @@ setTimer(function(){
 			entity.respawning = true;
 		}
 	}
-}, 1000/GAME_FPS); // TODO hook back in PHYSICS_FPS
+}, 1000/GAME_FPS);
 
 game.mapEntities.push(new Wall(-ARENA_SIZE/2, 0, 10, ARENA_SIZE));
 game.mapEntities.push(new Wall(ARENA_SIZE/2, 0, 10, ARENA_SIZE));
