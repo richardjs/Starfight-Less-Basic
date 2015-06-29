@@ -138,9 +138,9 @@ Player.prototype.damage = function(amount, source){
 				image: function(){
 					return function(){
 						var r = Math.random();
-						if(r < .75){
+						if(r < .90){
 							return document.getElementById('redParticleImage');
-						}else if(r < .75 + .125){
+						}else if(r < .90 + .5){
 							return document.getElementById('yellowParticleImage');
 						}else{
 							return document.getElementById('whiteParticleImage');
@@ -148,11 +148,11 @@ Player.prototype.damage = function(amount, source){
 					}
 				},
 				ttl: 0,
-				emitCount: 250,
+				emitCount: 300,
 				particleTTL: 5000,
 				particleVelocity: function(){
 					var angle = Math.PI*2*Math.random();
-					var speed = 150*Math.random();
+					var speed = 175*Math.random();
 					return function(t){
 						return {
 							x: Math.cos(angle) * speed,
