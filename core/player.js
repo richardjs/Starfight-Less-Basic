@@ -128,6 +128,46 @@ Player.prototype.damage = function(amount, source){
 		this.energy = 0;
 		this.dead = true;
 		this.respawning = false;
+
+		if(typeof(stardust) !== 'undefined'){
+			stardust.add(
+				this.x - 15,
+				this.y - 15, {
+				width: 30,
+				height: 30,
+				image: function(){
+					return function(){
+						var r = Math.random();
+						if(r < .75){
+							return document.getElementById('redParticleImage');
+						}else if(r < .75 + .125){
+							return document.getElementById('yellowParticleImage');
+						}else{
+							return document.getElementById('whiteParticleImage');
+						}
+					}
+				},
+				ttl: 0,
+				emitCount: 250,
+				particleTTL: 5000,
+				particleVelocity: function(){
+					var angle = Math.PI*2*Math.random();
+					var speed = 150*Math.random();
+					return function(t){
+						return {
+							x: Math.cos(angle) * speed,
+							y: Math.sin(angle) * speed
+						}
+					}
+				},
+				opacity: function(){
+					var x = 4000*Math.random() + 1000;
+					return function(t){
+						return (Math.max(x-t, 0))/5000
+					}
+				},
+			});
+		}
 	}
 }
 

@@ -18,7 +18,11 @@ function initDisplay(){
 
 	window.stardust = new Stardust();
 
-	function render(){
+	var lastTime = Date.now();
+	function render(time){
+		var delta = time - lastTime;
+		lastTime = time;
+
 		ctx.fillStyle = 'black';
 		ctx.fillRect(0, 0, canvas.width, canvas.height);
 
@@ -98,6 +102,10 @@ function initDisplay(){
 			}
 			ctx.restore();
 		}
+
+		stardust.update(delta);
+		stardust.render(canvas, ctx);
+
 		ctx.restore();
 
 		if(game.message){
