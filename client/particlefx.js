@@ -16,7 +16,7 @@ var FX_PLAYER_EXPLOSION = {
 		}
 	},
 	ttl: 0,
-	emitCount: 300,
+	emitCount: 500,
 	particleTTL: 5000,
 	particleVelocity: function(){
 		var angle = Math.PI*2*Math.random();
@@ -52,21 +52,7 @@ var FX_PLAYER_THRUST= {
 		}
 	},
 	ttl: 0,
-	emitCount: 10,
 	particleTTL: 1000,
-	/*
-	particleVelocity: function(){
-		
-		var angle = Math.PI*2*Math.random();
-		var speed = 175*Math.random();
-		return function(t){
-			return {
-				x: Math.cos(angle) * speed,
-				y: Math.sin(angle) * speed
-			}
-		}
-	},
-	*/
 	opacity: function(){
 		return function(t){
 			return (Math.max(1000-t, 0))/1000

@@ -67,9 +67,11 @@ Player.prototype.update = function(){
 	// Acceleration
 	var acceleration = PLAYER_ACCELERATION;
 	var cost = PLAYER_THRUSTER_COST;
+	var afterburner = false;
 	if(this.keysDown[65] && this.energy > cost + PLAYER_AFTERBURNER_COST){
 		acceleration += PLAYER_AFTERBURNER_ACCELERATION;
 		cost += PLAYER_AFTERBURNER_COST;
+		afterburner = true;
 	}
 	if(this.keysDown[38] && this.energy > cost){
 		this.dx += Math.cos(this.angle) * acceleration;
@@ -80,8 +82,11 @@ Player.prototype.update = function(){
 			var fx = FX_PLAYER_THRUST;
 			var player = this;
 			fx.particleVelocity = function(){
-				console.log(player.angle);
-				var angle = player.angle + Math.PI + (Math.PI/4*Math.random() - Math.PI/8);
+				if(!afterburner){
+					var angle = player.angle + Math.PI + (Math.PI/4*Math.random() - Math.PI/8);
+				}else{
+					var angle = player.angle + Math.PI + (Math.PI*Math.random() - Math.PI/2);
+				}
 				var speed = 275*Math.random();
 				return function(t){
 					return {
@@ -91,9 +96,14 @@ Player.prototype.update = function(){
 				}
 			}
 
+			fx.emitCount = 5;
+			if(afterburner){
+				fx.emitCount = 25;
+			}
+
 			stardust.add(
-				player.x + Math.cos(player.angle + Math.PI) * 30,
-				player.y + Math.sin(player.angle + Math.PI) * 30,
+				player.x + Math.cos(player.angle + Math.PI) * 28,
+				player.y + Math.sin(player.angle + Math.PI) * 28,
 				fx
 			);
 		}
@@ -128,7 +138,7 @@ Player.prototype.update = function(){
 		this.bulletTimer = PLAYER_BULLET_DELAY;
 	}
 
-	this.keysDown = {};
+	//this.keysDown = {};
 
 	Entity.prototype.update.call(this);
 

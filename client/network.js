@@ -30,6 +30,7 @@ function initNetwork(){
 					player.energy = entityState.energy;
 					player.bulletTimer = entityState.bulletTimer;
 					player.dead = entityState.dead;
+					player.keysDown = entityState.keysDown;
 
 					if(player.id === id){
 						game.localPlayer = player;
@@ -65,11 +66,11 @@ function initNetwork(){
 
 		game.message = state.message;
 		
+		var hiddenStardust = window.stardust;
+		delete window.stardust;
 		while(inputs.length && inputs[0].sequenceNumber <= state.lastSequenceNumber){
 			inputs.shift();
 		}
-		var hiddenStardust = stardust;
-		delete window.stardust;
 		if(game.localPlayer){
 			for(var i = 0; i < inputs.length; i++){
 				game.localPlayer.keysDown = inputs[i].keysDown;

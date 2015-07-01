@@ -4,6 +4,8 @@ var LOW_ENERGY = .33 * PLAYER_STARTING_ENERGY;
 var MED_ENERGY = .66 * PLAYER_STARTING_ENERGY;
 var GAME_WIN_SCORE = 200;
 
+var lastFXSequenceNumber = 0;
+
 function initDisplay(){
 	window.canvas = document.createElement('canvas');
 	window.ctx = canvas.getContext('2d');
