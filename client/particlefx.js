@@ -74,8 +74,8 @@ var FX_BULLET_HIT = {
 		}
 	},
 	ttl: 0,
-	emitCount: 50,
-	particleTTL: 500,
+	emitCount: 100,
+	particleTTL: 750,
 	particleVelocity: function(){
 		var angle = Math.PI*2*Math.random();
 		var speed = 300*Math.random();
@@ -88,7 +88,7 @@ var FX_BULLET_HIT = {
 	},
 	opacity: function(){
 		return function(t){
-			return (Math.max(500-t, 0))/500
+			return (Math.max(750-t, 0))/750
 		}
 	}
 }
