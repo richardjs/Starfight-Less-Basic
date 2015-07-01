@@ -45,6 +45,10 @@ Bullet.prototype.update = function(){
 				&& !entity.dead){
 			this.game.entities.splice(this.game.entities.indexOf(this), 1);
 			entity.damage(BULLET_DAMAGE, this);
+			
+			if(typeof(stardust) !== 'undefined'){
+				stardust.add(this.x, this.y, FX_BULLET_HIT);
+			}
 		}
 			
 	}

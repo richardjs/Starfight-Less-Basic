@@ -59,3 +59,37 @@ var FX_PLAYER_THRUST= {
 		}
 	}
 }
+
+var FX_BULLET_HIT = {
+	width: 0,
+	height: 0,
+	image: function(){
+		return function(){
+			var r = Math.random();
+			if(r < .50){
+				return document.getElementById('yellowParticleImage');
+			}else{
+				return document.getElementById('whiteParticleImage');
+			}
+		}
+	},
+	ttl: 0,
+	emitCount: 50,
+	particleTTL: 500,
+	particleVelocity: function(){
+		var angle = Math.PI*2*Math.random();
+		var speed = 300*Math.random();
+		return function(t){
+			return {
+				x: Math.cos(angle) * speed,
+				y: Math.sin(angle) * speed
+			}
+		}
+	},
+	opacity: function(){
+		return function(t){
+			return (Math.max(500-t, 0))/500
+		}
+	}
+}
+

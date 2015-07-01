@@ -118,7 +118,7 @@ Player.prototype.update = function(){
 			var player = this;
 			fx.particleVelocity = function(){
 				if(!afterburner){
-					var angle = player.angle + (Math.PI/4*Math.random() - Math.PI/8);
+					var angle = player.angle + (Math.PI/2*Math.random() - Math.PI/4);
 				}else{
 					var angle = player.angle + Math.PI + (Math.PI*Math.random() - Math.PI/2);
 				}
