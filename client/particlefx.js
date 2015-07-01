@@ -16,7 +16,7 @@ var FX_PLAYER_EXPLOSION = {
 		}
 	},
 	ttl: 0,
-	emitCount: 500,
+	emitCount: 250,
 	particleTTL: 5000,
 	particleVelocity: function(){
 		var angle = Math.PI*2*Math.random();
@@ -74,7 +74,7 @@ var FX_BULLET_HIT = {
 		}
 	},
 	ttl: 0,
-	emitCount: 100,
+	emitCount: 50,
 	particleTTL: 750,
 	particleVelocity: function(){
 		var angle = Math.PI*2*Math.random();

@@ -96,9 +96,9 @@ Player.prototype.update = function(){
 				}
 			}
 
-			fx.emitCount = 5;
+			fx.emitCount = 2;
 			if(afterburner){
-				fx.emitCount = 25;
+				fx.emitCount = 10;
 			}
 
 			stardust.add(
@@ -131,9 +131,9 @@ Player.prototype.update = function(){
 				}
 			}
 
-			fx.emitCount = 5;
+			fx.emitCount = 2;
 			if(afterburner){
-				fx.emitCount = 25;
+				fx.emitCount = 10;
 			}
 
 			stardust.add(
