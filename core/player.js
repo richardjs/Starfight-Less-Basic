@@ -112,6 +112,36 @@ Player.prototype.update = function(){
 		this.dx -= Math.cos(this.angle) * acceleration;
 		this.dy -= Math.sin(this.angle) * acceleration;
 		this.energy -= cost;
+
+		if(typeof(stardust) !== 'undefined'){
+			var fx = FX_PLAYER_THRUST;
+			var player = this;
+			fx.particleVelocity = function(){
+				if(!afterburner){
+					var angle = player.angle + (Math.PI/4*Math.random() - Math.PI/8);
+				}else{
+					var angle = player.angle + Math.PI + (Math.PI*Math.random() - Math.PI/2);
+				}
+				var speed = 275*Math.random();
+				return function(t){
+					return {
+						x: player.dx*60 + Math.cos(angle) * speed,
+						y: player.dy*60 + Math.sin(angle) * speed
+					}
+				}
+			}
+
+			fx.emitCount = 5;
+			if(afterburner){
+				fx.emitCount = 25;
+			}
+
+			stardust.add(
+				player.x - Math.cos(player.angle + Math.PI) * 10,
+				player.y - Math.sin(player.angle + Math.PI) * 10,
+				fx
+			);
+		}
 	}
 
 	// Brake
