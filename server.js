@@ -14,7 +14,7 @@ var GAME_FPS = 60;
 var NETWORK_FPS = 60;
 var ARENA_SIZE = 3000;
 var RESPAWN_TIME = 1000 * 5;
-var GAME_WIN_SCORE = 200;
+var GAME_WIN_SCORE = 20;
 var GAME_END_TIME = 1000 * 10;
 
 var app = express();
@@ -52,11 +52,13 @@ setTimer(function(){
 							setTimeout(function(){
 								for(var k = 0; k < game.entities.length; k++){
 									var entity = game.entities[k];
-									entity.reset(
-										Math.random() * ARENA_SIZE*.9 - (ARENA_SIZE*.9/2),
-										Math.random() * ARENA_SIZE*.9 - (ARENA_SIZE*.9/2)
-									);
-									entity.score = 0;
+									if(entity.reset){
+										entity.reset(
+											Math.random() * ARENA_SIZE*.9 - (ARENA_SIZE*.9/2),
+											Math.random() * ARENA_SIZE*.9 - (ARENA_SIZE*.9/2)
+										);
+										entity.score = 0;
+									}
 								}
 								game.message = '';
 							}, GAME_END_TIME);
