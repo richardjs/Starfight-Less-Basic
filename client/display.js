@@ -40,6 +40,10 @@ function initDisplay(){
 			canvas.width/2 - game.localPlayer.x,
 			canvas.height/2 - game.localPlayer.y
 		);
+
+		stardust.update(delta);
+		stardust.render(canvas, ctx);
+
 		var playerImage = document.getElementById('playerImage');
 		for(var i = 0; i < game.mapEntities.length; i++){
 			var entity = game.mapEntities[i];
@@ -103,8 +107,6 @@ function initDisplay(){
 			ctx.restore();
 		}
 
-		stardust.update(delta);
-		stardust.render(canvas, ctx);
 
 		ctx.restore();
 

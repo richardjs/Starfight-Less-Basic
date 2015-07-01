@@ -68,12 +68,15 @@ function initNetwork(){
 		while(inputs.length && inputs[0].sequenceNumber <= state.lastSequenceNumber){
 			inputs.shift();
 		}
+		var hiddenStardust = stardust;
+		delete window.stardust;
 		if(game.localPlayer){
 			for(var i = 0; i < inputs.length; i++){
 				game.localPlayer.keysDown = inputs[i].keysDown;
 				game.update();
 			}
 		}
+		window.stardust = hiddenStardust;
 	});
 
 	window.ping = null;

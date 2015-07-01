@@ -75,6 +75,28 @@ Player.prototype.update = function(){
 		this.dx += Math.cos(this.angle) * acceleration;
 		this.dy += Math.sin(this.angle) * acceleration;
 		this.energy -= cost;
+
+		if(typeof(stardust) !== 'undefined'){
+			var fx = FX_PLAYER_THRUST;
+			var player = this;
+			fx.particleVelocity = function(){
+				console.log(player.angle);
+				var angle = player.angle + Math.PI + (Math.PI/4*Math.random() - Math.PI/8);
+				var speed = 275*Math.random();
+				return function(t){
+					return {
+						x: player.dx*60 + Math.cos(angle) * speed,
+						y: player.dy*60 + Math.sin(angle) * speed
+					}
+				}
+			}
+
+			stardust.add(
+				player.x + Math.cos(player.angle + Math.PI) * 30,
+				player.y + Math.sin(player.angle + Math.PI) * 30,
+				fx
+			);
+		}
 	}
 	if(this.keysDown[40] && this.energy > cost){
 		this.dx -= Math.cos(this.angle) * acceleration;
@@ -132,41 +154,9 @@ Player.prototype.damage = function(amount, source){
 		if(typeof(stardust) !== 'undefined'){
 			stardust.add(
 				this.x - 15,
-				this.y - 15, {
-				width: 30,
-				height: 30,
-				image: function(){
-					return function(){
-						var r = Math.random();
-						if(r < .90){
-							return document.getElementById('redParticleImage');
-						}else if(r < .90 + .5){
-							return document.getElementById('yellowParticleImage');
-						}else{
-							return document.getElementById('whiteParticleImage');
-						}
-					}
-				},
-				ttl: 0,
-				emitCount: 300,
-				particleTTL: 5000,
-				particleVelocity: function(){
-					var angle = Math.PI*2*Math.random();
-					var speed = 175*Math.random();
-					return function(t){
-						return {
-							x: Math.cos(angle) * speed,
-							y: Math.sin(angle) * speed
-						}
-					}
-				},
-				opacity: function(){
-					var x = 4000*Math.random() + 1000;
-					return function(t){
-						return (Math.max(x-t, 0))/5000
-					}
-				},
-			});
+				this.y - 15,
+				FX_PLAYER_EXPLOSION
+			);
 		}
 	}
 }
