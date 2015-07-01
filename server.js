@@ -42,23 +42,25 @@ setTimer(function(){
 							killer = game.entities[j];
 						}
 					}
-					killer.score += 10 + Math.floor(entity.score*.1);
-					entity.score = Math.floor(entity.score*.9);
+					if(killer){
+						killer.score += 10 + Math.floor(entity.score*.1);
+						entity.score = Math.floor(entity.score*.9);
 
-					// Check for winner
-					if(killer.score >= GAME_WIN_SCORE){
-						game.message = killer.name + ' wins!';
-						setTimeout(function(){
-							for(var k = 0; k < game.entities.length; k++){
-								var entity = game.entities[k];
-								entity.reset(
-									Math.random() * ARENA_SIZE*.9 - (ARENA_SIZE*.9/2),
-									Math.random() * ARENA_SIZE*.9 - (ARENA_SIZE*.9/2)
-								);
-								entity.score = 0;
-							}
-							game.message = '';
-						}, GAME_END_TIME);
+						// Check for winner
+						if(killer.score >= GAME_WIN_SCORE){
+							game.message = killer.name + ' wins!';
+							setTimeout(function(){
+								for(var k = 0; k < game.entities.length; k++){
+									var entity = game.entities[k];
+									entity.reset(
+										Math.random() * ARENA_SIZE*.9 - (ARENA_SIZE*.9/2),
+										Math.random() * ARENA_SIZE*.9 - (ARENA_SIZE*.9/2)
+									);
+									entity.score = 0;
+								}
+								game.message = '';
+							}, GAME_END_TIME);
+						}
 					}
 				}
 
