@@ -14,7 +14,7 @@ var GAME_FPS = 60;
 var NETWORK_FPS = 60;
 var ARENA_SIZE = 3000;
 var RESPAWN_TIME = 1000 * 5;
-var GAME_WIN_SCORE = 20;
+var GAME_WIN_SCORE = 200;
 var GAME_END_TIME = 1000 * 10;
 
 var app = express();
@@ -47,8 +47,9 @@ setTimer(function(){
 						entity.score = Math.floor(entity.score*.9);
 
 						// Check for winner
-						if(killer.score >= GAME_WIN_SCORE){
+						if(killer.score >= GAME_WIN_SCORE && !game.gameOver){
 							game.message = killer.name + ' wins!';
+							game.gameOver = true;
 							setTimeout(function(){
 								for(var k = 0; k < game.entities.length; k++){
 									var entity = game.entities[k];
@@ -61,6 +62,7 @@ setTimer(function(){
 									}
 								}
 								game.message = '';
+								game.gameOver = false
 							}, GAME_END_TIME);
 						}
 					}
